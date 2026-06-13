@@ -1,17 +1,21 @@
 package main;
 
 public class Estandar implements TipoDeEnvio {
-
-	@Override
-	public float calcularCostos(Pedido pedido) {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	private CorreoArgentino lib;
+	
+	public Estandar(CorreoArgentino lib) {
+		this.lib = lib;
 	}
 
 	@Override
-	public String entregaEstimada(Pedido pedido) {
-		// TODO Auto-generated method stub
-		return null;
+	public float calcularCostos(Pedido pedido) {
+		return lib.estimarEnvio(pedido.getPeso(), pedido.getDir());
+	}
+
+	@Override
+	public int entregaEstimada(Pedido pedido) {
+		return 7;
 	}
 
 }

@@ -4,5 +4,5 @@ public interface TipoDeEnvio {
 	
 	public float calcularCostos(Pedido pedido);
 	
-	public String entregaEstimada(Pedido pedido);
+	public int entregaEstimada(Pedido pedido);
 }

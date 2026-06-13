@@ -2,16 +2,21 @@ package main;
 
 public class Express implements TipoDeEnvio {
 
-	@Override
-	public float calcularCostos(Pedido pedido) {
-		// TODO Auto-generated method stub
-		return 0;
+	private EnvioExpress lib;
+	
+	public Express(EnvioExpress lib) {
+		this.lib = lib;
 	}
 
 	@Override
-	public String entregaEstimada(Pedido pedido) {
+	public float calcularCostos(Pedido pedido) {
 		// TODO Auto-generated method stub
-		return null;
+		return lib.calcularCosto(pedido.getPrecio());
+	}
+
+	@Override
+	public int entregaEstimada(Pedido pedido) {
+		return 1;
 	}
 
 }
