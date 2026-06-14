@@ -10,7 +10,6 @@ public class Express implements TipoDeEnvio {
 
 	@Override
 	public float calcularCostos(Pedido pedido) {
-		// TODO Auto-generated method stub
 		return lib.calcularCosto(pedido.getPrecio());
 	}
 
