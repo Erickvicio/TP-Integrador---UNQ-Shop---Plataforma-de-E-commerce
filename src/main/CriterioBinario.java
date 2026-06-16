@@ -1,5 +1,5 @@
 package main;
 
-public abstract class CriterioBinario extends CriterioComplejo{
+public abstract class CriterioBinario implements Criterio{
 
 }

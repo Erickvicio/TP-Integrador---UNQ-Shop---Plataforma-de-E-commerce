@@ -1,5 +1,8 @@
 package main;
 
-public class PorDisponibilidad extends CriterioSimple {
+public class PorDisponibilidad implements Criterio {
 
+	public boolean cumple(Catalogo catalogo) {
+		return false;
+	}
 }
