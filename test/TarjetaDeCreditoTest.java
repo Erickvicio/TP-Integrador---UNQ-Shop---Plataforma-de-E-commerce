@@ -80,7 +80,7 @@ class TarjetaDeCreditoTest {
 
         Exception excepcion = assertThrows(RuntimeException.class, () -> {
             tarjetaDeCredito.validarDatos();
-        });
+        });  
 
         assertEquals("Error: El número de tarjeta es inválido.", excepcion.getMessage());
         verifyNoInteractions(apiTarjetaMock);
@@ -120,7 +120,7 @@ class TarjetaDeCreditoTest {
         tarjetaDeCredito.ejecutarTransicion();
         
         // Verificamos que se delegue la acción a la API externa
-        verify(apiTarjetaMock, times(1)).transferenciaInmediata();
+        verify(apiTarjetaMock).transferenciaInmediata();
     }
 
    /* @Test
