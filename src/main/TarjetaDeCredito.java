@@ -12,7 +12,7 @@ public class TarjetaDeCredito extends MetodosDePago {
     private ApiTarjetaDeCredito apiTarjeta;
     
     // Nueva lista para guardar los cupones registrados
-    private List<Object> cupones;
+    private List<Cupon> cupones;
 
     public TarjetaDeCredito(ApiTarjetaDeCredito apiTarjeta) {
         this.apiTarjeta = apiTarjeta;
@@ -61,15 +61,13 @@ public class TarjetaDeCredito extends MetodosDePago {
     @Override
     public void notificarResultado(){
         // Generamos el cupón desde la API y lo registramos en nuestra lista interna
-    	Object nuevoCupon = this.apiTarjeta.generarCupon();
+    	Cupon nuevoCupon = this.apiTarjeta.generarCupon();
         this.cupones.add(nuevoCupon);
     }
 
-    // Getter para poder verificar los cupones desde los tests si lo necesitás
-    public List<Object> getCupones() {
+    public List<Cupon> getCupones() {
         return this.cupones;
-    }
-
+    } 
     // Setters para los Tests
     public void setNumero(int numero) { this.numero = numero; }
     public void setCvv(int cvv) { this.cvv = cvv; }
