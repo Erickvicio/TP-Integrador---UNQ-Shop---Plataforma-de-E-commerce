@@ -5,7 +5,7 @@ public class PorCategoria implements Criterio {
 	private String categoria;
 
 	public boolean cumple(Catalogo catalogo) {
-		return false;
+		return catalogo.getCategoria().equals(categoria);
 	}
 	
 	public PorCategoria(String categoria) {

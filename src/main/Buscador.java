@@ -1,13 +1,15 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Buscador {
 
 	private Criterio criterio;
+	private List<Catalogo> catalogo;
 	
 	public Buscador(List<Catalogo> catalogo) {
-		// TODO Auto-generated constructor stub
+		this.catalogo = catalogo;
 	}
 
 	public void establecerCriterio(Criterio criterio) {
@@ -15,8 +17,17 @@ public class Buscador {
 	}
 
 	public List<Catalogo> buscar() {
-		// TODO Auto-generated method stub
-		return null;
+			
+		List<Catalogo> resultado = new ArrayList<>();
+		
+		for(Catalogo c:catalogo) {
+			
+			if(criterio.cumple(c)) {
+				resultado.add(c);
+			}
+		}
+		return resultado;
+		
 	}
 
 }

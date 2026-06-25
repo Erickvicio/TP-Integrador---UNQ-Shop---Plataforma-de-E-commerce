@@ -2,14 +2,15 @@ package main;
 
 public class PorPrecioMax implements Criterio {
 
+	private double precioMax;
+	
 	public boolean cumple(Catalogo catalogo) {
-		return false;
+		return catalogo.getPrecio() <= precioMax;
 	}
 
-	private double precio;
 	
 	public PorPrecioMax(double precio) {
-		this.precio = precio;
+		this.precioMax = precio;
 	}
 
 }

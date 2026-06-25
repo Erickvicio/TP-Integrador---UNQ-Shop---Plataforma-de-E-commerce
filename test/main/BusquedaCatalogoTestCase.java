@@ -17,7 +17,7 @@ class BusquedaCatalogoTestCase {
 	
 	
 	//SET UP
-	private List<Catalogo> catalogoCompleto;
+	private List<Catalogo> catalogoCompleto = new ArrayList<>();
 	
 	private Catalogo p0;
 	private Catalogo p1;
@@ -54,13 +54,14 @@ class BusquedaCatalogoTestCase {
 	@Test
 	void busquedaPorNombre() {
 		
+		
 		//Test Double Configuration
 		when(p5.getNombre()).thenReturn("Juego de cortinas Blackout Oferta!");
 		when(p4.getNombre()).thenReturn("Zapatillas Kappa Deportivas Oferta!");
 		when(p3.getNombre()).thenReturn("Pack Juego de Sabanas 2 1/2 Plazas Oferta");
-		when(p2.getNombre()).thenReturn("");
-		when(p1.getNombre()).thenReturn("");
-		when(p0.getNombre()).thenReturn("");
+		when(p2.getNombre()).thenReturn("1");
+		when(p1.getNombre()).thenReturn("2");
+		when(p0.getNombre()).thenReturn("3");
 		
 		//Creamos un criterio por nombre (los que contengan "oferta")
 		Criterio c = new PorNombre("oferta");
@@ -71,6 +72,7 @@ class BusquedaCatalogoTestCase {
 		//Establecemos los que queremos encontrar
 		List<Catalogo> esperado = new ArrayList<Catalogo>();
 		esperado.add(p5); esperado.add(p4); esperado.add(p3);
+		
 		
 		//Exercise
 		List<Catalogo> obtenido = b.buscar();
@@ -84,6 +86,11 @@ class BusquedaCatalogoTestCase {
 		verify(p2, times(1)).getNombre();
 		verify(p1, times(1)).getNombre();
 		verify(p0, times(1)).getNombre();
+		
+		
+//		System.out.println(esperado);
+//		System.out.println(obtenido);
+		
 	}
 	
 
@@ -202,6 +209,26 @@ class BusquedaCatalogoTestCase {
 		when(p5.getPrecio()).thenReturn(9500f);
 		when(p5.estaDisponible()).thenReturn(true);
 		
+		when(p4.getCategoria()).thenReturn("Electronica");
+		when(p4.getPrecio()).thenReturn(10001f);
+		when(p4.estaDisponible()).thenReturn(true);
+		
+		when(p3.getCategoria()).thenReturn("Electrodomestico");
+		when(p3.getPrecio()).thenReturn(9500f);
+		when(p3.estaDisponible()).thenReturn(true);
+		
+		when(p2.getCategoria()).thenReturn("Cuidado Personal");
+		when(p2.getPrecio()).thenReturn(9500f);
+		when(p2.estaDisponible()).thenReturn(false);
+		
+		when(p1.getCategoria()).thenReturn("Electronica");
+		when(p1.getPrecio()).thenReturn(250000f);
+		when(p1.estaDisponible()).thenReturn(true);
+		
+		when(p0.getCategoria()).thenReturn("Automotor");
+		when(p0.getPrecio()).thenReturn(9500f);
+		when(p0.estaDisponible()).thenReturn(false);
+		
 		/* Creamos un criterio de busqueda
 		 * Categoria debe ser "Electronica", el precio debe ser menor o igual a $10.000
 		 * y debe estar disponible
@@ -238,6 +265,10 @@ class BusquedaCatalogoTestCase {
 		//Test Double Configuration
 		when(p5.getNombre()).thenReturn("adaptador");
 		when(p4.getNombre()).thenReturn("cable");
+		when(p3.getNombre()).thenReturn("figurita");
+		when(p2.getNombre()).thenReturn("celular");
+		when(p1.getNombre()).thenReturn("Guantes");
+		when(p0.getNombre()).thenReturn("Corchon");
 		
 		/* Creamos un criterio de busqueda
 		 * El nombre del producto contiene cable o adaptador
@@ -248,7 +279,7 @@ class BusquedaCatalogoTestCase {
 								);
 		
 		Set<Catalogo> esperado = new HashSet<Catalogo>();
-		esperado.add(p5);
+		esperado.add(p5); esperado.add(p4);
 			
 		b.establecerCriterio(unCriterio);
 		
@@ -259,7 +290,11 @@ class BusquedaCatalogoTestCase {
 		//Verify
 		Assertions.assertTrue(obtenido.containsAll(esperado));
 		verify(p5, times(2)).getNombre();
-		verify(p4, times(2)).getNombre();
+		verify(p4, times(1)).getNombre(); // Solo se accede una vez ya que la primera de las cond era si contiene "cable"
+		verify(p3, times(2)).getNombre();	
+		verify(p2, times(2)).getNombre();
+		verify(p1, times(2)).getNombre();
+		verify(p0, times(2)).getNombre();
 		
 	}
 	

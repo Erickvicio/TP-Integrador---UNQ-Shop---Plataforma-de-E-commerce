@@ -1,13 +1,16 @@
 package main;
 
 public class PorNombre implements Criterio {
-
-	public boolean cumple(Catalogo catalogo) {
-		return false;
-	}
 	
 	private String contenido;
-
+	
+	public boolean cumple(Catalogo catalogo) {
+		
+		return catalogo.getNombre()
+                .toLowerCase()
+                .contains(contenido.toLowerCase());
+	}
+	
 	public PorNombre(String contenido) {
 		this.contenido = contenido;
 	}
