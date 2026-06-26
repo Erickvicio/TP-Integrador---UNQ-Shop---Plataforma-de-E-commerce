@@ -1,14 +1,14 @@
 package main;
 
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
 
 public class TransferenciaBancaria extends MetodosDePago{
 
     private int cvu;
     private String alias;
-    private List<Object> comprobantesTransferencia;
+    private List<ComprobanteTransferenciaBancaria> comprobantesTransferencia;
     
     private ApiTransferenciaBancaria apiTransferenciaBancaria;
      
@@ -28,12 +28,12 @@ public class TransferenciaBancaria extends MetodosDePago{
         }
     }
     
-    private void validarCvu(){
-    	if (this.cvu == 0) {
+    void validarCvu(){
+    	if (this.cvu <= 0) {
             throw new RuntimeException("Error: El cvu/Cbu es nulo.");
         }
     }
-    private void validarAlias(){
+    void validarAlias(){
     	if (this.alias == "") {
             throw new RuntimeException("Error: El alias es inválido.");
         }
@@ -51,11 +51,14 @@ public class TransferenciaBancaria extends MetodosDePago{
 
     
     public void notificarResultado() {
-    	Object nuevoComprobante = this.apiTransferenciaBancaria.generarCupon();
+    	ComprobanteTransferenciaBancaria nuevoComprobante = this.apiTransferenciaBancaria.generarCupon();
+        this.agregarComprobante(nuevoComprobante);
+    }
+    public void agregarComprobante(ComprobanteTransferenciaBancaria nuevoComprobante) { // Reemplaza 'Comprobante' por el tipo de dato real de tu objeto
         this.comprobantesTransferencia.add(nuevoComprobante);
     }
-
-    public List<Object> getComprobantesTransferencia() {
+    
+    public List<ComprobanteTransferenciaBancaria> getComprobantesTransferencia() {
         return this.comprobantesTransferencia;
     }
 
