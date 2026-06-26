@@ -1,3 +1,4 @@
+package main;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -7,10 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// Imports de tu modelo
-import main.ApiTarjetaDeCredito;
-import main.Cupon;
-import main.TarjetaDeCredito;
 
 class TarjetaDeCreditoTest {
 

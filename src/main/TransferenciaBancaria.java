@@ -28,12 +28,12 @@ public class TransferenciaBancaria extends MetodosDePago{
         }
     }
     
-    private void validarCvu(){
-    	if (this.cvu == 0) {
+    void validarCvu(){
+    	if (this.cvu <= 0) {
             throw new RuntimeException("Error: El cvu/Cbu es nulo.");
         }
     }
-    private void validarAlias(){
+    void validarAlias(){
     	if (this.alias == "") {
             throw new RuntimeException("Error: El alias es inválido.");
         }

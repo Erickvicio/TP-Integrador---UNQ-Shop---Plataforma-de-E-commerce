@@ -1,9 +1,10 @@
+package main;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import main.MetodosDePago;
+
 
 class MetodosDePagoTest {
 
@@ -37,6 +38,7 @@ class MetodosDePagoTest {
      // Cambiar RuntimeException.class por Exception.class (o la excepción específica que lance)
         assertThrows(Exception.class, () -> {
             medioPagoSpy.iniciarProcesoPago();
+            
         });
 
         // Verificación de corte de flujo (estilo limpio de la imagen)
