@@ -1,46 +1,11 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.List;
+public interface Pedido {
 
-public class Pedido {
-	
-    public Estado estado;
-    private List<Item> productos;
+	float getPeso();
 
-    public Pedido() {
-        this.productos = new ArrayList<>();
-        // ¡ESTA LÍNEA ES CLAVE! Si no la ponés acá, el método jamás se ejecuta
-        this.estadoInicial(); 
-    }
+	Direccion getDir();
 
-    public void estadoInicial() {
-        this.setEstado(new Borrador(this));
-    }
+	float getPrecio();
 
-    public void agregarItem(Item item) {
-        this.productos.add(item);
-    }
-
-    public void quitarItem(Item item) {
-        this.productos.remove(item);
-    }
-
-    public void decrementerStock() {}
-    public void rembolsaCostoYEnvio() {}
-    public void rembolsaCosto() {}
-    public void rembolsaEnvio() {}
-    public void incrementarStock() {}
-
-    public List<Item> getProductos() {
-        return this.productos;
-    }
-
-    public Estado getEstado() {
-        return this.estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
 }
