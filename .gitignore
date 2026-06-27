@@ -1,0 +1,22 @@
+@
+# 1. Ignorar absolutamente todo por defecto
+/*
+
+# 2. Excepciones: Permitir carpetas de codigo, tests y el README
+!/src/
+!/Test/
+!/README.md
+
+# 3. Asegurar que no se filtren archivos compilados
+*.class
+bin/
+build/
+out/
+
+# 4. Ignorar explicitamente archivos de configuracion de IDEs
+.classpath
+.project
+.settings/
+.vscode/
+.factorypath
+@
