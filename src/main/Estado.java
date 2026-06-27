@@ -1,6 +1,6 @@
 package main;
 
-public class Estado {
+public abstract class Estado {
 	
 	public Pedido pedido;
 	

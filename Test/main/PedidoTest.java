@@ -1,12 +1,10 @@
+package main;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import main.Pedido;
-import main.Estado;
-import main.Item;
 
 class PedidoTest {
 
@@ -16,9 +14,19 @@ class PedidoTest {
 
     @BeforeEach
     void setUp() {
+        // Al instanciarse acá, se ejecuta el método inicial.
         pedido = new Pedido();
         estadoMock = mock(Estado.class);
         itemMock = mock(Item.class);
+    }
+
+    @Test
+    void testEstadoInicial_AlCrearUnPedidoDebeAsignarElEstadoBorrador() {
+        // Act & Assert
+        // Al verificar que arranca siendo una instancia de Borrador, JaCoCo
+        // se ve obligado a pintar de verde las líneas de inicialización del Pedido.
+        assertNotNull(pedido.getEstado());
+        assertInstanceOf(Borrador.class, pedido.getEstado());
     }
 
     @Test
@@ -43,16 +51,18 @@ class PedidoTest {
 
     @Test
     void testSetEstado_DebeCambiarElEstadoDelPedidoYElGetterRetornarlo() {
-        assertNull(pedido.getEstado());
+        // Primero verificamos que arrancó en Borrador (así cubrimos el getter inicial)
+        assertInstanceOf(Borrador.class, pedido.getEstado());
 
+        // Cambiamos al mock (así cubrimos el setEstado completo)
         pedido.setEstado(estadoMock);
 
+        // Verificamos el cambio
         assertEquals(estadoMock, pedido.getEstado());
     }
 
     @Test
     void testMetodosVacios_NoDeberianRomperNiLanzarExcepciones() {
-        // Testeamos que los métodos vacíos actuales no tiren errores raros al ejecutarse
         assertDoesNotThrow(() -> pedido.decrementerStock());
         assertDoesNotThrow(() -> pedido.incrementarStock());
         assertDoesNotThrow(() -> pedido.rembolsaCosto());

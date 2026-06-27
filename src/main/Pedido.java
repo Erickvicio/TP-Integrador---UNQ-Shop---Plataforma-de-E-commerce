@@ -10,7 +10,14 @@ public class Pedido {
 
     public Pedido() {
         this.productos = new ArrayList<>();
+        // ¡ESTA LÍNEA ES CLAVE! Si no la ponés acá, el método jamás se ejecuta
+        this.estadoInicial(); 
     }
+
+    public void estadoInicial() {
+        this.setEstado(new Borrador(this));
+    }
+
     public void agregarItem(Item item) {
         this.productos.add(item);
     }
@@ -19,41 +26,20 @@ public class Pedido {
         this.productos.remove(item);
     }
 
-    public void decrementerStock() {
+    public void decrementerStock() {}
+    public void rembolsaCostoYEnvio() {}
+    public void rembolsaCosto() {}
+    public void rembolsaEnvio() {}
+    public void incrementarStock() {}
 
-    }
-
-    public void rembolsaCostoYEnvio() {
-
-    }
-
-    public void rembolsaCosto() {
-
-    }
-
-    public void rembolsaEnvio() {
-
-    }
-
-    public void incrementarStock() {
-
-    }
-
-    private void estadoInicial() {
-    	
-
-    }
-
-    // Getter para la lista por si lo necesitás en los tests
     public List<Item> getProductos() {
         return this.productos;
     }
- // Getter para obtener el estado actual
+
     public Estado getEstado() {
         return this.estado;
     }
 
-    // Setter para cambiar el estado del pedido
     public void setEstado(Estado estado) {
         this.estado = estado;
     }
