@@ -8,11 +8,10 @@ public class Producto extends ItemDeCatalogo {
 	String categoria;
 	double precio;
 	double peso;
-	ArrayList<Atributo> atributosExtra;
-	int stock=0;
+	ArrayList<Atributo> atributosExtra; 
 	
 	public Producto(String nombre,String descripcion,int descuento,int sku,String marca,String categoria,double precio,double peso){
-		super(nombre,descripcion,descuento);
+		super(nombre,descripcion,descuento, categoria);
 		
 		if((nombre == ""||descripcion == "")||(marca == "" || categoria == "")) {
 			throw new DatoInvalido("el atrobuto nombre o descripcion no pueden estar vacios");
@@ -24,7 +23,6 @@ public class Producto extends ItemDeCatalogo {
 		
 		this.sku=sku;
 		this.marca=marca;
-		this.categoria=categoria;
 		this.precio=precio;
 		this.peso=peso;
 		this.atributosExtra=new ArrayList<Atributo>();
@@ -51,7 +49,7 @@ public class Producto extends ItemDeCatalogo {
 	@Override
 	public void incrementarStock(int cantidad) {
 		// TODO Auto-generated method stub
-		this.stock+= cantidad;
+		this.stock += cantidad; 
 	}
 
 
@@ -66,10 +64,6 @@ public class Producto extends ItemDeCatalogo {
 		if (this.stock >= cantidad) {
 			this.stock-=cantidad;
 		}
-	}
-	
-	public int getStock() {
-		return stock;
 	}
 	
 	

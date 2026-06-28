@@ -1,4 +1,4 @@
-package main;
+package busquedaCatalogo;
 
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,18 +13,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class BusquedaCatalogoTestCase {
+import main.ItemDeCatalogo;
+
+class BusquedaCatalogoTestMockCase {
 	
 	
 	//SET UP
-	private List<Catalogo> catalogoCompleto = new ArrayList<>();
+	private List<ItemDeCatalogo> catalogoCompleto = new ArrayList<>();
 	
-	private Catalogo p0;
-	private Catalogo p1;
-	private Catalogo p2;
-	private Catalogo p3;
-	private Catalogo p4;
-	private Catalogo p5;
+	private ItemDeCatalogo p0;
+	private ItemDeCatalogo p1;
+	private ItemDeCatalogo p2;
+	private ItemDeCatalogo p3;
+	private ItemDeCatalogo p4;
+	private ItemDeCatalogo p5;
 	
 	private Buscador b;
 	
@@ -33,12 +35,12 @@ class BusquedaCatalogoTestCase {
 	void setUp(){
 		
 		//SetUp
-		p0 = mock(Catalogo.class);	
-		p1 = mock(Catalogo.class);
-		p2 = mock(Catalogo.class);
-		p3 = mock(Catalogo.class);
-		p4 = mock(Catalogo.class);
-		p5 = mock(Catalogo.class);
+		p0 = mock(ItemDeCatalogo.class);	
+		p1 = mock(ItemDeCatalogo.class);
+		p2 = mock(ItemDeCatalogo.class);
+		p3 = mock(ItemDeCatalogo.class);
+		p4 = mock(ItemDeCatalogo.class);
+		p5 = mock(ItemDeCatalogo.class);
 		
 		//Test Double Configuration
 		catalogoCompleto.add(p0);
@@ -70,12 +72,12 @@ class BusquedaCatalogoTestCase {
 		b.establecerCriterio(c);
 		
 		//Establecemos los que queremos encontrar
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p5); esperado.add(p4); esperado.add(p3);
 		
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		//Verify
 		//Comprobamos que el resultado contenga todo lo que se esperaba
@@ -98,12 +100,12 @@ class BusquedaCatalogoTestCase {
 	void busquedaPorPrecio() {
 		
 		//Test Double Configuration
-		when(p5.getPrecio()).thenReturn(22990f);
-		when(p4.getPrecio()).thenReturn(13591f);
-		when(p3.getPrecio()).thenReturn(25000f);
-		when(p2.getPrecio()).thenReturn(109999f);
-		when(p1.getPrecio()).thenReturn(89999f);
-		when(p0.getPrecio()).thenReturn(59999f);
+		when(p5.precioFinal()).thenReturn((double)22990f);
+		when(p4.precioFinal()).thenReturn((double)13591f);
+		when(p3.precioFinal()).thenReturn((double)25000f);
+		when(p2.precioFinal()).thenReturn((double)109999f);
+		when(p1.precioFinal()).thenReturn((double)89999f);
+		when(p0.precioFinal()).thenReturn((double)59999f);
 		
 		//Creamos un criterio por nombre (los que contengan "oferta")
 		Criterio c = new PorPrecioMax(25000f);
@@ -112,21 +114,21 @@ class BusquedaCatalogoTestCase {
 		b.establecerCriterio(c);
 		
 		//Establecemos los que queremos encontrar
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p5); esperado.add(p4); esperado.add(p3);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		//Verify
 		//Comprobamos que el resultado contenga todo lo que se esperaba
 		Assertions.assertTrue(obtenido.containsAll(esperado));
-		verify(p5, times(1)).getPrecio();
-		verify(p4, times(1)).getPrecio();
-		verify(p3, times(1)).getPrecio();
-		verify(p2, times(1)).getPrecio();
-		verify(p1, times(1)).getPrecio();
-		verify(p0, times(1)).getPrecio();
+		verify(p5, times(1)).precioFinal();
+		verify(p4, times(1)).precioFinal();
+		verify(p3, times(1)).precioFinal();
+		verify(p2, times(1)).precioFinal();
+		verify(p1, times(1)).precioFinal();
+		verify(p0, times(1)).precioFinal();
 	}
 	
 	@Test
@@ -147,11 +149,11 @@ class BusquedaCatalogoTestCase {
 		b.establecerCriterio(c);
 		
 		//Establecemos los que queremos encontrar
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p5); esperado.add(p4); esperado.add(p3);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		//Verify
 		//Comprobamos que el resultado contenga todo lo que se esperaba
@@ -182,11 +184,11 @@ class BusquedaCatalogoTestCase {
 		b.establecerCriterio(c);
 		
 		//Establecemos los que queremos encontrar
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p5); esperado.add(p4); esperado.add(p3);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		//Verify
 		//Comprobamos que el resultado contenga todo lo que se esperaba
@@ -206,27 +208,27 @@ class BusquedaCatalogoTestCase {
 		
 		//Test Double Configuration
 		when(p5.getCategoria()).thenReturn("Electronica");
-		when(p5.getPrecio()).thenReturn(9500f);
+		when(p5.precioFinal()).thenReturn((double) 9500f);
 		when(p5.estaDisponible()).thenReturn(true);
 		
 		when(p4.getCategoria()).thenReturn("Electronica");
-		when(p4.getPrecio()).thenReturn(10001f);
+		when(p4.precioFinal()).thenReturn((double)10001f);
 		when(p4.estaDisponible()).thenReturn(true);
 		
 		when(p3.getCategoria()).thenReturn("Electrodomestico");
-		when(p3.getPrecio()).thenReturn(9500f);
+		when(p3.precioFinal()).thenReturn((double)9500f);
 		when(p3.estaDisponible()).thenReturn(true);
 		
 		when(p2.getCategoria()).thenReturn("Cuidado Personal");
-		when(p2.getPrecio()).thenReturn(9500f);
+		when(p2.precioFinal()).thenReturn((double)9500f);
 		when(p2.estaDisponible()).thenReturn(false);
 		
 		when(p1.getCategoria()).thenReturn("Electronica");
-		when(p1.getPrecio()).thenReturn(250000f);
+		when(p1.precioFinal()).thenReturn((double)250000f);
 		when(p1.estaDisponible()).thenReturn(true);
 		
 		when(p0.getCategoria()).thenReturn("Automotor");
-		when(p0.getPrecio()).thenReturn(9500f);
+		when(p0.precioFinal()).thenReturn((double)9500f);
 		when(p0.estaDisponible()).thenReturn(false);
 		
 		/* Creamos un criterio de busqueda
@@ -243,18 +245,18 @@ class BusquedaCatalogoTestCase {
 				);
 				
 		// Estrablecemos el resultado esperado
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p5);
 			
 		b.establecerCriterio(unCriterio);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 			
 		//Verify
 		Assertions.assertTrue(obtenido.containsAll(esperado));
 		verify(p5, times(1)).getCategoria();
-		verify(p5, times(1)).getPrecio();
+		verify(p5, times(1)).precioFinal();
 		verify(p5, times(1)).estaDisponible();
 
 	}
@@ -278,13 +280,13 @@ class BusquedaCatalogoTestCase {
 									new PorNombre("adaptador")
 								);
 		
-		Set<Catalogo> esperado = new HashSet<Catalogo>();
+		Set<ItemDeCatalogo> esperado = new HashSet<ItemDeCatalogo>();
 		esperado.add(p5); esperado.add(p4);
 			
 		b.establecerCriterio(unCriterio);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		
 		//Verify
@@ -314,7 +316,7 @@ class BusquedaCatalogoTestCase {
 		 * */
 		Criterio unCriterio = new Negacion(new PorCategoria("Indumentaria"));
 		
-		List<Catalogo> esperado = new ArrayList<Catalogo>();
+		List<ItemDeCatalogo> esperado = new ArrayList<ItemDeCatalogo>();
 		esperado.add(p0); esperado.add(p1); esperado.add(p2);
 		esperado.add(p3); esperado.add(p4);
 		
@@ -322,7 +324,7 @@ class BusquedaCatalogoTestCase {
 		b.establecerCriterio(unCriterio);
 		
 		//Exercise
-		List<Catalogo> obtenido = b.buscar();
+		List<ItemDeCatalogo> obtenido = b.buscar();
 		
 		Assertions.assertTrue(obtenido.containsAll(esperado));
 		verify(p5, times(1)).getCategoria();
