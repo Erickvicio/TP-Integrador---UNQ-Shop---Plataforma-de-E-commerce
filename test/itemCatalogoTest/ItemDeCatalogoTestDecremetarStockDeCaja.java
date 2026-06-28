@@ -25,9 +25,9 @@ class ItemDeCatalogoTestDecremetarStockDeCaja  {
 	@BeforeEach
 	void setUp() throws Exception {
 	
-		caja1 =new Caja("caja de todo","caja que contiene todo tipo de productos y cajas",10);//
-		caja2 =new Caja("caja de alimentos","caja que contiene alimentos",0);//
-		caja3 =new Caja("caja de electronicos","caja que contiene dispositivos electronicos",20);//
+		caja1 =new Caja("caja de todo","caja que contiene todo tipo de productos y cajas",10,"Mixta");//
+		caja2 =new Caja("caja de alimentos","caja que contiene alimentos",0,"Comida");//
+		caja3 =new Caja("caja de electronicos","caja que contiene dispositivos electronicos",20,"Electronicos");//
 		cocacola= new Producto("coca", "bebida coca cola", 10, 1234, "cocacola", "bebida", 50.0, 1);//
 		pizza= new Producto("domino's pizza ", "pizza de local domino", 20, 5678, "domino", "comida", 70.0, 2);//
 		pan= new Producto("pan delicia", "panes de tipo roceta", 0, 9101, "delicia", "comida", 20.0, 1);

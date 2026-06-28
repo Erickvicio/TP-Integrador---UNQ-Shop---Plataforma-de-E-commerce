@@ -7,8 +7,8 @@ public class Caja extends ItemDeCatalogo {
 	
 	HashMap<ItemDeCatalogo,Integer> items;
 	
-	public Caja(String nombre,String descripcion,int descuento) {
-		super(nombre,descripcion,descuento);
+	public Caja(String nombre,String descripcion,int descuento,String categoria) {
+		super(nombre,descripcion,descuento,categoria);
 		items= new HashMap<>();
 	}
 	

@@ -5,29 +5,25 @@ import java.util.ArrayList;
 public class Producto extends ItemDeCatalogo {
 	Integer sku;
 	String marca;
-	String categoria;
 	double precio;
 	double peso;
 	ArrayList<Atributo> atributosExtra;
 	int stock=0;
 	
 	public Producto(String nombre,String descripcion,int descuento,int sku,String marca,String categoria,double precio,double peso){
-		super(nombre,descripcion,descuento);
+		super(nombre,descripcion,descuento,categoria);
 		
-		if((nombre == ""||descripcion == "")||(marca == "" || categoria == "")) {
-			throw new DatoInvalido("el atrobuto nombre o descripcion no pueden estar vacios");
-		};
-		if(((precio < 0)||(peso < 0)||(descuento < 0 || sku < 0))) {
+		if(marca == "") {
+			throw new DatoInvalido("el atributo categorias no puede estar vacio");
+		}else if (((precio < 0)||(peso < 0)||(descuento < 0 || sku < 0))) {
 			throw new DatoInvalido("los datos numericos deben ser correctos y mayores a 0");
-		};
-		
-		
-		this.sku=sku;
-		this.marca=marca;
-		this.categoria=categoria;
-		this.precio=precio;
-		this.peso=peso;
-		this.atributosExtra=new ArrayList<Atributo>();
+		}else {
+			this.sku=sku;
+			this.marca=marca;
+			this.precio=precio;
+			this.peso=peso;
+			this.atributosExtra=new ArrayList<Atributo>();
+		}
 	}
 
 	
@@ -71,6 +67,5 @@ public class Producto extends ItemDeCatalogo {
 	public int getStock() {
 		return stock;
 	}
-	
 	
 }
