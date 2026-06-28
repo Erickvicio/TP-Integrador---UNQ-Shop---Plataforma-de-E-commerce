@@ -1,4 +1,4 @@
-package itemCatalogoTest;
+package main;
 import main.Caja;
 
 import static org.junit.jupiter.api.Assertions.*;

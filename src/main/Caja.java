@@ -7,8 +7,13 @@ public class Caja extends ItemDeCatalogo {
 	
 	HashMap<ItemDeCatalogo,Integer> items;
 	
+	public Caja(String nombre,String descripcion,int descuento, String categoria) {
+		super(nombre,descripcion,descuento, categoria);
+		items= new HashMap<>();
+	}
+	
 	public Caja(String nombre,String descripcion,int descuento) {
-		super(nombre,descripcion,descuento);
+		super(nombre,descripcion,descuento, null);
 		items= new HashMap<>();
 	}
 	
@@ -41,7 +46,7 @@ public class Caja extends ItemDeCatalogo {
 		double preciobase= this.precioBase();
 		return preciobase - ((preciobase * descuento )/100);
 	}
-
+ 
 	@Override
 	public void incrementarStock(int cantidad) {
 		// TODO Auto-generated method stub
@@ -51,6 +56,12 @@ public class Caja extends ItemDeCatalogo {
 
 		}
 		
+	}
+	
+	@Override
+	public boolean estaDisponible() {
+		return items.keySet().
+				stream().allMatch(i -> i.getStock() >= items.get(i));
 	}
 
 	@Override

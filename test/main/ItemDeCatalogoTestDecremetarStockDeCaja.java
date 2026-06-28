@@ -1,4 +1,4 @@
-package itemCatalogoTest;
+package main;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import main.Caja;
 import main.Producto;
 
-class ItemDeCatalogoTestDecremetarStockDeCajaSingularTest {
+class ItemDeCatalogoTestDecremetarStockDeCaja  {
 	Caja caja1;
 	Caja caja2;
 	Caja caja3;
@@ -43,12 +43,12 @@ class ItemDeCatalogoTestDecremetarStockDeCajaSingularTest {
 		
 		caja3.agregarItem(auriculares, 3);
 		caja3.agregarItem(cargador, 3);
-		caja3.incrementarStock(5);
-		//tenemos 15 en el stock de auriculares  
-		//tenemos 15 en el stock de cargadores
-		caja3.decrementarStock();
-		assertEquals(auriculares.getStock(),12);
-		assertEquals(cargador.getStock(), 12);
+		caja3.incrementarStock(3);
+		//tenemos 9 en el stock de auriculares  
+		//tenemos 9 en el stock de cargadores
+		caja3.decrementarStock(2);
+		assertEquals(auriculares.getStock(),3);
+		assertEquals(cargador.getStock(), 3);
 	}
 	
 	@Test
@@ -58,16 +58,16 @@ class ItemDeCatalogoTestDecremetarStockDeCajaSingularTest {
 		caja2.agregarItem(cocacola, 2);
 		caja2.agregarItem(pizza, 1);
 		caja2.agregarItem(pan, 3);
-		caja2.incrementarStock(4);
-		//tenemos 8 en el stock de cocacola
-		//tenemos 4 en el stock de pizza
-		//tenemos 12 en el stock de  pan
-		caja2.decrementarStock();;
+		caja2.incrementarStock(3);
+		//tenemos 6 en el stock de cocacola
+		//tenemos 3 en el stock de pizza
+		//tenemos 9 en el stock de  pan
+		caja2.decrementarStock(4);;
 		
 		assertEquals(cocacola.getStock(),6);
 		assertEquals(pizza.getStock(),3);
 		assertEquals(pan.getStock(), 9);
-		
+		//el stock no se decremento debido a que la cantidad que se quiere decrementar es mayor a la que hay en el stock de los productos
 	}
 	
 	@Test
@@ -100,13 +100,17 @@ class ItemDeCatalogoTestDecremetarStockDeCajaSingularTest {
 		
 		caja1.agregarItem(galletitas, 2);
 		caja1.agregarItem(auriculares, 1);
-		caja1.decrementarStock();
+		caja1.decrementarStock(2);
 		
-		assertEquals(auriculares.getStock(),8);
-		assertEquals(cargador.getStock(), 9);
-		assertEquals(cocacola.getStock(),2);
-		assertEquals(pizza.getStock(),1);
-		assertEquals(pan.getStock(), 3);
-		assertEquals(galletitas.getStock(), 4);
+		assertEquals(auriculares.getStock(),1);
+		assertEquals(cargador.getStock(), 3);
+		assertEquals(cocacola.getStock(),8);
+		assertEquals(pizza.getStock(),4);
+		assertEquals(pan.getStock(), 12);
+		assertEquals(galletitas.getStock(), 2);
 	}
+
+	
 }
+
+

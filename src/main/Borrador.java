@@ -1,6 +1,5 @@
 package main;
 
-import java.util.Map;
 
 public class Borrador extends Estado{
 	
