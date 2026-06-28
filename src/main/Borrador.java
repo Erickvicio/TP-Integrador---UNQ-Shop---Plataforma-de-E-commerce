@@ -17,11 +17,11 @@ public class Borrador extends Estado{
 	}
 	
 	
-    public void agregarItem(Map<ItemDeCatalogo, Integer> item) {
+    public void agregarItem(ItemDeCatalogo item) {
         pedido.agregarItem(item);
     }
 
-    public void quitarItem(Map<ItemDeCatalogo, Integer> item) {
+    public void quitarItem(ItemDeCatalogo item) {
     	pedido.quitarItem(item);
     }
 }
