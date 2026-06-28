@@ -14,13 +14,12 @@ public class Pedido {
     public Pedido(Direccion dir) {
         this.dir = dir;
         this.productos = new HashMap<>(); 
-        this.estadoInicial(); 
+        this.estadoInicial();
     }
 
     //Lógica Principal
     
     public void agregarItem(ItemDeCatalogo item) {
-        this.validarCantidad(1);
         this.agregarItem_veces(item,1);
     }
     
@@ -29,12 +28,14 @@ public class Pedido {
 
         // Ejecuta la validación interna
         this.validarCantidad(vecesAgregar);
-
+        this.validarStockDisponible(vecesAgregar,item);
         // Suma al valor existente o lo inicializa en 0 si no estaba, luego suma las veces indicadas
         this.productos.put(item, this.productos.getOrDefault(item, 0) + vecesAgregar);
     }
     
-    public void quitarItem(ItemDeCatalogo item) {
+
+
+	public void quitarItem(ItemDeCatalogo item) {
         this.quitarItem_veces(item, 1);
     }
 
@@ -77,8 +78,13 @@ public class Pedido {
             throw new IllegalArgumentException("La cantidad a agregar debe ser mayor a 0. Pasaste: " + cantidad);
         }
     }
+    private void validarStockDisponible(int vecesAgregar, ItemDeCatalogo item) {
+    	if (this.esStockInvalida(vecesAgregar,item)) {
+            throw new IllegalArgumentException(vecesAgregar + "estas solicitando mas stock que el disponible ");
+        }
+	}
     
-    private void validarParametros(ItemDeCatalogo item, int cantidadAQuitar) {
+	private void validarParametros(ItemDeCatalogo item, int cantidadAQuitar) {
         if (this.esParametroInvalido(item, cantidadAQuitar)) {
             throw new IllegalArgumentException("Los parámetros de eliminación son inválidos. El ítem no puede ser nulo y la cantidad debe ser mayor a 0.");
         }
@@ -114,6 +120,10 @@ public class Pedido {
     private boolean superaCantidadActual(ItemDeCatalogo item, int cantidadAQuitar) {
         return cantidadAQuitar > this.productos.getOrDefault(item, 0);
     }
+    
+    private boolean esStockInvalida(int vecesAgregar, ItemDeCatalogo item) {
+		return (vecesAgregar>=item.getStock());
+	}
 
     // Getters
     public Map<ItemDeCatalogo, Integer> getProductos() {
