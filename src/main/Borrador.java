@@ -1,5 +1,7 @@
 package main;
 
+import java.util.Map;
+
 public class Borrador extends Estado{
 	
 	
@@ -15,11 +17,11 @@ public class Borrador extends Estado{
 	}
 	
 	
-    public void agregarItem(Item item) {
+    public void agregarItem(Map<ItemDeCatalogo, Integer> item) {
         pedido.agregarItem(item);
     }
 
-    public void quitarItem(Item item) {
+    public void quitarItem(Map<ItemDeCatalogo, Integer> item) {
     	pedido.quitarItem(item);
     }
 }

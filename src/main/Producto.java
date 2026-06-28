@@ -71,6 +71,13 @@ public class Producto extends ItemDeCatalogo {
 	public int getStock() {
 		return stock;
 	}
+
+
+	@Override
+	protected Integer peso() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 }

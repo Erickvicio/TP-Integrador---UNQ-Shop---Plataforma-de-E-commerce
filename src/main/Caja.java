@@ -53,6 +53,12 @@ public class Caja extends ItemDeCatalogo {
 		
 	}
 
+	@Override
+	protected Integer peso() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 
 }
