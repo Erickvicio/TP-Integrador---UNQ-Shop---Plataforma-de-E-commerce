@@ -2,5 +2,5 @@ package main;
 
 public interface Criterio {
 	
-	boolean cumple(Catalogo catalogo);
+	boolean cumple(ItemDeCatalogo c);
 }

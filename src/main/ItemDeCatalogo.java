@@ -1,6 +1,7 @@
 package main;
 
 public abstract class ItemDeCatalogo {
+
     String nombre;
     String descripcion;
     String category; // Atributo unificado
@@ -55,4 +56,7 @@ public abstract class ItemDeCatalogo {
     public String getCategoria() {
         return this.category;
     }
+
+
 }
+

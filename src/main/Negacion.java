@@ -4,7 +4,7 @@ public class Negacion implements Criterio {
 
 	private Criterio c1;
 	
-	public boolean cumple(Catalogo catalogo) {
+	public boolean cumple(ItemDeCatalogo catalogo) {
 		return !c1.cumple(catalogo);
 	}
 	

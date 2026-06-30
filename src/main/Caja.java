@@ -64,6 +64,7 @@ public class Caja extends ItemDeCatalogo {
 				stream().allMatch(i -> i.getStock() >= items.get(i));
 	}
 
+
 	@Override
 	protected Integer peso() {
 		// TODO Auto-generated method stub

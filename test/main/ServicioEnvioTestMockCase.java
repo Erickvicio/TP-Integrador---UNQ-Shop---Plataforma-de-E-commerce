@@ -1,19 +1,15 @@
 package main;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import main.Caja;
 import main.Pedido;
-import main.Producto;
 
-class ServicioEnvioTestCase {
+class ServicioEnvioTestMockCase {
 	
 	
 	private ServicioEnvio sE;
@@ -35,41 +31,13 @@ class ServicioEnvioTestCase {
 		mCorreoArgentino 	= Mockito.mock(CorreoArgentino.class);
 		mEnvioExpress 		= Mockito.mock(EnvioExpress.class);
 		mSucursal 			= Mockito.mock(Sucursal.class);
-//		unPedido 			= Mockito.mock(Pedido.class);
+		unPedido 			= Mockito.mock(Pedido.class);
 		
 		//Test Double Instalation
+		sE 				= new ServicioEnvio(unPedido);
 		sEstandar 		= new Estandar(mCorreoArgentino);	
 		sExpress 		= new Express(mEnvioExpress);
-		sRetiroSucursal = new RetiroEnSucursal(mSucursal);
-		
-		unPedido = new Pedido(null);
-		
-		Producto unProducto =
-				new Producto(
-			            "Polystation",
-			            "Consola de sobremesa familiar",
-			            0,
-			            1000,
-			            "GLK",
-			            "Electronica",
-			            40999,
-			            2.2
-			    );
-		unProducto.incrementarStock(15);
-		
-				
-		Caja unaCaja = new Caja(
-	            "Caja Oferta Navidad",
-	            "Caja navideña con productos varios",
-	            20,
-	            "Hogar"
-	    );
-		unaCaja.incrementarStock(15);
-		
-		unPedido.agregarItem(unaCaja);
-		unPedido.agregarItem(unProducto);
-		
-		sE = new ServicioEnvio(unPedido);
+		sRetiroSucursal = new RetiroEnSucursal(mSucursal);	
 	}
 	
 	
@@ -196,5 +164,5 @@ class ServicioEnvioTestCase {
 		verify(mSucursal, times(1)).hayStock(unPedido);
 		assertEquals(esperado, obtenido);
 	}
-
+	
 }

@@ -4,9 +4,9 @@ public class PorNombre implements Criterio {
 	
 	private String contenido;
 	
-	public boolean cumple(Catalogo catalogo) {
+	public boolean cumple(ItemDeCatalogo itemCatalogo) {
 		
-		return catalogo.getNombre()
+		return itemCatalogo.getNombre()
                 .toLowerCase()
                 .contains(contenido.toLowerCase());
 	}

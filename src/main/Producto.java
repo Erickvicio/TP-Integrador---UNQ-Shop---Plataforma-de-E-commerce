@@ -72,6 +72,6 @@ public class Producto extends ItemDeCatalogo {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	
 }
