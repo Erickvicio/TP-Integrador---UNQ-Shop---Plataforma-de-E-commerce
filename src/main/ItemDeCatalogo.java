@@ -29,10 +29,19 @@ public abstract class ItemDeCatalogo {
         this.stock = this.stock + cantidad;
     }
 
+    public boolean tieneStockSuficiente(int cantidadRequerida) {
+        return this.stock >= cantidadRequerida;
+    }
+
+    // Modificamos tu método para que actúe como un guardián
     public void decrementarStock(int cantidad) {
-        // Podrías agregar acá una validación si no quieren stock negativo
+        if (!this.tieneStockSuficiente(cantidad)) {
+            throw new RuntimeException("Error crítico: No se puede decrementar stock por debajo de 0 para: " + this.nombre);
+        }
         this.stock = this.stock - cantidad;
     }
+    
+    
 
     // Métodos de consulta (Queries / Getters & Setters)
     public boolean estaDisponible() {
