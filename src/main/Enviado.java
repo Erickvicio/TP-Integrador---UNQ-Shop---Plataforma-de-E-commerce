@@ -28,4 +28,9 @@ public class Enviado extends Estado {
     public void quitarItem(Item item) {
         throw new RuntimeException("Error: Imposible quitar artículos. El transporte ya tiene el paquete.");
     }
+
+	@Override
+	public void mandarMail(Subsistema s) {
+		s.enviarMail(this, pedido);
+	};	
 }
