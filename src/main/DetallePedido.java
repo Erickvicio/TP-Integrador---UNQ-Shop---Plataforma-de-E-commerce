@@ -17,7 +17,7 @@ public class DetallePedido {
         if (this.item == null) {
             throw new RuntimeException("El ítem de catálogo no puede ser nulo.");
         }
-
+        // El detalle le delega la responsabilidad al ítem
         this.item.verificarStockSuficiente(cantidadTotalAValidar);
     }
 

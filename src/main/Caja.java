@@ -1,6 +1,5 @@
 package main;
 
-
 import java.util.HashMap;
 
 public class Caja extends ItemDeCatalogo {
@@ -18,7 +17,6 @@ public class Caja extends ItemDeCatalogo {
 	}
 	
 	public void agregarItem(ItemDeCatalogo item,int cantidad) {
-		
 			items.put(item,cantidad);
 	}
 
@@ -34,10 +32,8 @@ public class Caja extends ItemDeCatalogo {
 		}
 	}
 	
-	
 	@Override
 	public double precioBase() {
-		// TODO Auto-generated method stub
 		double resultado=items.entrySet().stream().mapToDouble(i ->i.getKey().precioFinal() * i.getValue()).sum();
 		return resultado;
 	}
@@ -49,13 +45,10 @@ public class Caja extends ItemDeCatalogo {
  
 	@Override
 	public void incrementarStock(int cantidad) {
-		// TODO Auto-generated method stub
 		for(HashMap.Entry<ItemDeCatalogo, Integer> ic : this.items.entrySet()) {
 				int aumento= ic.getValue() * cantidad;
 				ic.getKey().incrementarStock(aumento);
-
 		}
-		
 	}
 	
 	@Override
@@ -64,13 +57,9 @@ public class Caja extends ItemDeCatalogo {
 				stream().allMatch(i -> i.getStock() >= items.get(i));
 	}
 
-
 	@Override
-	protected Integer peso() {
+	protected Integer peso() { // Volvió a Integer objeto y a retornar null
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
-
 }

@@ -17,31 +17,26 @@ public abstract class ItemDeCatalogo {
         this.stock = 0; // Inicializado por defecto
     }
     
-    
-    
     // Métodos abstractos de precio y peso
     public abstract double precioBase();
     public abstract double precioFinal();
-    protected abstract Integer peso();
+    protected abstract Integer peso(); // Volvió a Integer objeto
 
     // Métodos de Stock (dejaron de ser abstractos y ahora tienen comportamiento)
     public void incrementarStock(int cantidad) {
         this.stock = this.stock + cantidad;
     }
 
-    public boolean tieneStockSuficiente(int cantidadRequerida) {
-        return this.stock >= cantidadRequerida;
-    }
-
-    // Modificamos tu método para que actúe como un guardián
     public void decrementarStock(int cantidad) {
-        if (!this.tieneStockSuficiente(cantidad)) {
-            throw new RuntimeException("Error crítico: No se puede decrementar stock por debajo de 0 para: " + this.nombre);
-        }
+        // Podrías agregar acá una validación si no quieren stock negativo
         this.stock = this.stock - cantidad;
     }
     
-    
+    public void verificarStockSuficiente(int cantidadRequerida) {
+        if (this.stock < cantidadRequerida) {
+            throw new RuntimeException("Estás solicitando más stock del disponible para: " + this.nombre);
+        }
+    }
 
     // Métodos de consulta (Queries / Getters & Setters)
     public boolean estaDisponible() {
@@ -67,7 +62,5 @@ public abstract class ItemDeCatalogo {
     public String getCategoria() {
         return this.category;
     }
-
-
 }
 

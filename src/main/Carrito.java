@@ -24,12 +24,12 @@ public class Carrito {
     }
 
     private void crearNuevoDetalle(ItemDeCatalogo item, int vecesAgregar) { 
-
+        // El ítem se valida a sí mismo
         item.verificarStockSuficiente(vecesAgregar); 
          
         DetallePedido nuevoDetalle = new DetallePedido(vecesAgregar, item); 
         this.detallePedidos.add(nuevoDetalle); 
-    } 
+    }
 
     public void quitarItem_veces(ItemDeCatalogo item, int cantidadAQuitar) { 
         this.validarItemNoNulo(item); 
