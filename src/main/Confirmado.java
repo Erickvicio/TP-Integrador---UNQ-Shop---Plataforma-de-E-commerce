@@ -26,4 +26,9 @@ public class Confirmado extends Estado {
     public void quitarItem(Item item) {
         throw new RuntimeException("Error: El pedido ya está confirmado. Modificación denegada.");
     }
+
+	@Override
+	public void mandarMail(Subsistema s) {
+		s.enviarMail(this, pedido);
+	};
 }
