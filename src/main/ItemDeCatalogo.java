@@ -17,6 +17,8 @@ public abstract class ItemDeCatalogo {
         this.stock = 0; // Inicializado por defecto
     }
     
+    
+    
     // Métodos abstractos de precio y peso
     public abstract double precioBase();
     public abstract double precioFinal();
