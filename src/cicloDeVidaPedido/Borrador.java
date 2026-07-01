@@ -1,5 +1,6 @@
-package main;
+package cicloDeVidaPedido;
 
+import catalogoDeProductos.ItemDeCatalogo;
 
 public class Borrador extends Estado{
 	
@@ -21,6 +22,6 @@ public class Borrador extends Estado{
     }
 
     public void quitarItem(ItemDeCatalogo item) {
-    	pedido.quitarItem(item);
+    	pedido.quitarItem(item); 
     }
 }

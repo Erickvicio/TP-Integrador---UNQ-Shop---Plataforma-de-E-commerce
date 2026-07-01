@@ -1,4 +1,6 @@
-package main;
+package metodosDeEnvio;
+
+import cicloDeVidaPedido.Pedido;
 
 public class ServicioEnvio {
 

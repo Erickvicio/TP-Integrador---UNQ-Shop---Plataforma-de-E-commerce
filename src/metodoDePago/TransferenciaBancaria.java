@@ -1,4 +1,4 @@
-package main;
+package metodoDePago;
 
 import java.util.ArrayList;
 

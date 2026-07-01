@@ -1,8 +1,10 @@
-package main;
+package metodoDePago;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
+
+import metodoDePago.ComprobanteTransferenciaBancaria;
 
 
 class ComprobanteTransferenciaBancariaTest {

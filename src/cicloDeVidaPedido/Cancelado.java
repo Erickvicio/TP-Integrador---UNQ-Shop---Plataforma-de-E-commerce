@@ -1,4 +1,7 @@
-package main;
+package cicloDeVidaPedido;
+
+import main.Item;
+import notificacionesDePedido.Subsistema;
 
 public class Cancelado extends Estado {
 	

@@ -1,9 +1,9 @@
-package main;
+package busquedaEnCatalogo;
 
-public class Conjuncion implements Criterio {
+import catalogoDeProductos.ItemDeCatalogo;
+
+public class Conjuncion extends CriterioBinario {
 	
-	private Criterio c1;
-	private Criterio c2;
 	
 	public boolean cumple(ItemDeCatalogo catalogo) {
 		return c1.cumple(catalogo) && c2.cumple(catalogo);

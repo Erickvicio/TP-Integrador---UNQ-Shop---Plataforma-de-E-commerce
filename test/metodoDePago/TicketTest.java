@@ -1,32 +1,34 @@
-package main;
+package metodoDePago;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import metodoDePago.Ticket;
 
-class CuponTest {
+
+class TicketTest {
 
     @Test
     void testGettersYSetters_DeberianDefinirYDevolverLosValoresCorrectamente() {
         // Instancia vacía
-        Cupon cupon = new Cupon();
+        Ticket ticket = new Ticket();
 
         // Probamos Setters
-        cupon.setNumeroDeCupon(111222);
-        cupon.setPrecioPagado(4500);
+        ticket.setNumeroDeTicket(111222);
+        ticket.setPrecioPagado(4500);
 
         // Probamos Getters
-        assertEquals(111222, cupon.getNumeroDeCupon());
-        assertEquals(4500, cupon.getPrecioPagado());
+        assertEquals(111222, ticket.getNumeroDeTicket());
+        assertEquals(4500, ticket.getPrecioPagado());
     }
 
     @Test
     void testConstructorConParametros_DeberiaInicializarLosAtributos() {
         // Probamos el constructor completo
-        Cupon cupon = new Cupon(999888, 7500);
+        Ticket ticket = new Ticket(999888, 7500);
 
-        assertEquals(999888, cupon.getNumeroDeCupon());
-        assertEquals(7500, cupon.getPrecioPagado());
+        assertEquals(999888, ticket.getNumeroDeTicket());
+        assertEquals(7500, ticket.getPrecioPagado());
     }
 }

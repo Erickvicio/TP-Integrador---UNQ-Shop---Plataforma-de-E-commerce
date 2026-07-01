@@ -1,4 +1,4 @@
-package main;
+package metodoDePago;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,12 +11,12 @@ public class TarjetaDeCredito extends MetodosDePago {
     private Date vencimiento;
     private ApiTarjetaDeCredito apiTarjeta;
     
-    // Nueva lista para guardar los cupones registrados
-    private List<Cupon> cupones;
+    // Nueva lista para guardar los tickets registrados
+    private List<Ticket> tickets;
 
     public TarjetaDeCredito(ApiTarjetaDeCredito apiTarjeta) {
         this.apiTarjeta = apiTarjeta;
-        this.cupones = new ArrayList<>(); // Inicializamos la lista vacía
+        this.tickets = new ArrayList<>(); // Inicializamos la lista vacía
     }
 
     
@@ -62,15 +62,21 @@ public class TarjetaDeCredito extends MetodosDePago {
     @Override
     public void notificarResultado(){
         // Generamos el cupón desde la API y lo registramos en nuestra lista interna
-    	Cupon nuevoCupon = this.apiTarjeta.generarCupon();
-        this.cupones.add(nuevoCupon);
+    	Ticket nuevoCupon = this.apiTarjeta.generarCupon();
+        this.tickets.add(nuevoCupon);
     }
 
-    public List<Cupon> getCupones() {
-        return this.cupones;
+    public List<Ticket> getTickets() {
+        return this.tickets;
     } 
+    
+    public void addTicket(Ticket t) {
+    	tickets.add(t);
+    }
+    
     // Setters para los Tests
     public void setNumero(int numero) { this.numero = numero; }
     public void setCvv(int cvv) { this.cvv = cvv; }
     public void setVencimiento(Date vencimiento) { this.vencimiento = vencimiento; }
+
 }

@@ -1,4 +1,7 @@
-package main;
+package notificacionesDePedido;
+
+import cicloDeVidaPedido.Estado;
+import cicloDeVidaPedido.Pedido;
 
 public class NotificadorDeMail implements Subsistema {
 	

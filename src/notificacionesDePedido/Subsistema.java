@@ -1,4 +1,7 @@
-package main;
+package notificacionesDePedido;
+
+import cicloDeVidaPedido.Estado;
+import cicloDeVidaPedido.Pedido;
 
 public interface Subsistema {
 	public void update(Estado estado);

@@ -1,13 +1,12 @@
-package main;
+package catalogoDeProductos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Atributo;
-import main.DatoInvalido;
-import main.Producto;
+import catalogoDeProductos.Atributo;
+import catalogoDeProductos.Producto;
 
 class ItemDeCatalogoTestDatosInvalidos {
 

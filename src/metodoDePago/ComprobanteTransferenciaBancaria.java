@@ -1,4 +1,4 @@
-package main;
+package metodoDePago;
 
 public class ComprobanteTransferenciaBancaria {
     public int numeroOperacion;

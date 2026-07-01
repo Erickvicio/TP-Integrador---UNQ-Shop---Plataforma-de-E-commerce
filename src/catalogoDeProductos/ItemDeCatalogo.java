@@ -1,4 +1,4 @@
-package main;
+package catalogoDeProductos;
 
 public abstract class ItemDeCatalogo {
 
@@ -7,6 +7,7 @@ public abstract class ItemDeCatalogo {
     String category; // Atributo unificado
     int descuento;
     int stock; // Prioridad a llamarse stock al final
+ 
      
     // Constructor unificado que incluye todos los campos necesarios
     public ItemDeCatalogo(String nombre, String descripcion, int descuento, String categoria) {
@@ -20,11 +21,11 @@ public abstract class ItemDeCatalogo {
     // Métodos abstractos de precio y peso
     public abstract double precioBase();
     public abstract double precioFinal();
-    protected abstract Integer peso(); // Volvió a Integer objeto
+    public abstract double getPeso(); // Volvió a Integer objeto
 
     // Métodos de Stock (dejaron de ser abstractos y ahora tienen comportamiento)
     public void incrementarStock(int cantidad) {
-        this.stock = this.stock + cantidad;
+        this.stock = this.stock + cantidad; 
     }
 
     public void decrementarStock(int cantidad) {
@@ -62,5 +63,8 @@ public abstract class ItemDeCatalogo {
     public String getCategoria() {
         return this.category;
     }
+    
+ 
+
 }
 

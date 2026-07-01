@@ -2,6 +2,8 @@ package main;
 
 import java.util.ArrayList;
 
+import catalogoDeProductos.ItemDeCatalogo;
+
 public class Carrito {
     
     // El ArrayList se muda para acá
@@ -48,9 +50,12 @@ public class Carrito {
     }
     
     public void agregarItem_veces(ItemDeCatalogo item, int vecesAgregar) {
-        this.validarItemNoNulo(item); 
-        this.validarCantidad(vecesAgregar); 
-        DetallePedido detalleExistente = this.buscarDetallePorItem(item); 
+        //this.validarItemNoNulo(item); 
+        this.validarCantidad(vecesAgregar);
+        
+        DetallePedido detalleExistente = this.buscarDetallePorItem(item);
+        
+        
         this.procesarDetallePedido(detalleExistente, item, vecesAgregar);
     } 
 
@@ -99,17 +104,10 @@ public class Carrito {
     }
 
     private void validarCantidad(int cantidad) { 
-        if (this.esCantidadInvalida(cantidad)) { 
+        if (cantidad <= 0) { 
             throw new RuntimeException("La cantidad a agregar debe ser mayor a 0. Pasaste: " + cantidad); 
         } 
-    } 
-
-
-    // --- MÉTODOS BOOLEANOS ---
-
-    private boolean esCantidadInvalida(int cantidad) { 
-        return cantidad <= 0; // 
-    } 
+    }  
 
 
     // --- GETTERS Y BUSCADORES DE CARRITO ---
@@ -119,7 +117,7 @@ public class Carrito {
     } 
 
     public DetallePedido buscarDetallePorItem(ItemDeCatalogo item) {
-        return this.detallePedidos.stream()
+        return detallePedidos.stream()
                 .filter(detalle -> detalle.perteneceAlItem(item)) 
                 .findFirst()
                 .orElse(null);

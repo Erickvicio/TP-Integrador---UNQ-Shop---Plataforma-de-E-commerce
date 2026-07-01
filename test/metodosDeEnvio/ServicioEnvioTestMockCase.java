@@ -1,4 +1,4 @@
-package main;
+package metodosDeEnvio;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -7,7 +7,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import main.Pedido;
+import cicloDeVidaPedido.Pedido;
+import metodosDeEnvio.CorreoArgentino;
+import metodosDeEnvio.EnvioExpress;
+import metodosDeEnvio.Estandar;
+import metodosDeEnvio.Express;
+import metodosDeEnvio.RetiroEnSucursal;
+import metodosDeEnvio.ServicioEnvio;
+import metodosDeEnvio.Sucursal;
+import metodosDeEnvio.TipoDeEnvio;
 
 class ServicioEnvioTestMockCase {
 	
@@ -28,7 +36,7 @@ class ServicioEnvioTestMockCase {
 	void setUp(){
 		
 		//Set up
-		mCorreoArgentino 	= Mockito.mock(CorreoArgentino.class);
+		mCorreoArgentino 	= Mockito.mock(CorreoArgentino.class); 
 		mEnvioExpress 		= Mockito.mock(EnvioExpress.class);
 		mSucursal 			= Mockito.mock(Sucursal.class);
 		unPedido 			= Mockito.mock(Pedido.class);

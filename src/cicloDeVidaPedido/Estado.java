@@ -1,4 +1,7 @@
-package main;
+package cicloDeVidaPedido;
+
+import main.Item;
+import notificacionesDePedido.Subsistema;
 
 public abstract class Estado {
 	

@@ -1,4 +1,4 @@
-package main;
+package catalogoDeProductos;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,7 @@ public class Producto extends ItemDeCatalogo {
 	String categoria;
 	double precio;
 	double peso;
+	
 	ArrayList<Atributo> atributosExtra; 
 	
 	public Producto(String nombre,String descripcion,int descuento,int sku,String marca,String categoria,double precio,double peso){
@@ -68,10 +69,14 @@ public class Producto extends ItemDeCatalogo {
 
 
 	@Override
-	protected Integer peso() {
+	public double getPeso() {
 		// TODO Auto-generated method stub
-		return null;
+		return peso;
 	}
+
+
+
+
 
 	
 }

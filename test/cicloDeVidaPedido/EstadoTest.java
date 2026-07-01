@@ -1,10 +1,15 @@
-package main;
+package cicloDeVidaPedido;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import cicloDeVidaPedido.Cancelado;
+import cicloDeVidaPedido.Estado;
+import cicloDeVidaPedido.Pedido;
+import main.Item;
 
 class EstadoTest {
 

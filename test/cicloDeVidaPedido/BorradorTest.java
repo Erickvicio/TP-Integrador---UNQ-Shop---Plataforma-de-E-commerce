@@ -1,10 +1,15 @@
-package main;
+package cicloDeVidaPedido;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import cicloDeVidaPedido.Borrador;
+import cicloDeVidaPedido.Confirmado;
+import cicloDeVidaPedido.Pedido;
+import main.Item;
 
 class BorradorTest {
 

@@ -1,4 +1,6 @@
-package main;
+package cicloDeVidaPedido;
+
+import main.Item;
 
 public class En_Preparacion extends Estado {
 	

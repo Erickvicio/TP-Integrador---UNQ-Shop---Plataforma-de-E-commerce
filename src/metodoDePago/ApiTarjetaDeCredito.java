@@ -1,4 +1,4 @@
-package main;
+package metodoDePago;
 import java.util.Date;
 
 
@@ -10,5 +10,7 @@ public interface ApiTarjetaDeCredito {
     // Los otros métodos que aparecen en tu diagrama
     public boolean preAutorizarBanco();
     public void transferenciaInmediata();
-    public Cupon generarCupon();
+    public Ticket generarCupon();
+
+	public Object generarTicket();
 }

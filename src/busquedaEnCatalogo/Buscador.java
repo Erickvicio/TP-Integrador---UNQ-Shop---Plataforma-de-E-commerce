@@ -1,7 +1,9 @@
-package main;
+package busquedaEnCatalogo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import catalogoDeProductos.ItemDeCatalogo;
 
 public class Buscador {
 

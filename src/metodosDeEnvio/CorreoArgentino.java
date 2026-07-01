@@ -1,4 +1,6 @@
-package main;
+package metodosDeEnvio;
+
+import main.Direccion;
 
 public interface CorreoArgentino {
 	

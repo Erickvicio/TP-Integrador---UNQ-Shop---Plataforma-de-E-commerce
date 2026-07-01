@@ -1,4 +1,4 @@
-package main;
+package metodoDePago;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import java.util.Date;
@@ -6,6 +6,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import metodoDePago.ApiTarjetaDeCredito;
+import metodoDePago.TarjetaDeCredito;
+import metodoDePago.Ticket;
 
 
 class TarjetaDeCreditoTest {
@@ -121,40 +125,38 @@ class TarjetaDeCreditoTest {
     // 2. TESTS DE LOS OTROS MÉTODOS HEREDADOS
     // ==========================================
 
-    
 
-    
     @Test
-    void testNotificarResultado_DebeGuardarElCuponEnLaTarjeta() {
-        Cupon cuponSimulado = new Cupon();
-        cuponSimulado.setNumeroDeCupon(999888);
-        cuponSimulado.setPrecioPagado(5000);
+    void testNotificarResultado_DebeGuardarElTicketEnLaTarjeta() {
+        Ticket ticketSimulado = new Ticket();
+        ticketSimulado.setNumeroDeTicket(999888);
+        ticketSimulado.setPrecioPagado(5000);
         
-        when(apiTarjetaMock.generarCupon()).thenReturn(cuponSimulado);
+        when(apiTarjetaMock.generarTicket()).thenReturn(ticketSimulado);
 
         // Acto
         tarjetaDeCredito.notificarResultado();
 
         // Verificación en el atributo (estado interno de la tarjeta)
-        assertEquals(1, tarjetaDeCredito.getCupones().size(), "La lista debería tener un cupón guardado");
-        assertTrue(tarjetaDeCredito.getCupones().contains(cuponSimulado), "El cupón debería estar en el atributo de la tarjeta");
+        assertEquals(1, tarjetaDeCredito.getTickets().size(), "La lista debería tener un cupón guardado");
+        assertTrue(tarjetaDeCredito.getTickets().contains(ticketSimulado), "El cupón debería estar en el atributo de la tarjeta");
     }
     @Test
-    void testGetCupones_DebeDevolverLaListaDeCuponesCorrectamente() {
+    void testgetTickets_DebeDevolverLaListaDeTicketesCorrectamente() {
         // 1. Configuración (Dado que necesitas una instancia real para probar su getter)
         TarjetaDeCredito tarjeta = new TarjetaDeCredito(apiTarjetaMock); // Reemplaza por el nombre real de tu clase hija
-        Cupon cuponTest = new Cupon();
-        cuponTest.numeroDeCupon = 123456;
+        Ticket ticketTest = new Ticket();
+        ticketTest.setNumeroDeTicket(123456);
 
         // Añadimos el cupón a la tarjeta (usando tu método de agregar o directamente si el flujo lo hace)
-        tarjeta.getCupones().add(cuponTest); 
+        tarjeta.addTicket(ticketTest); 
 
         // 2. Acto: Llamamos al método que queremos testear
-        List<Cupon> resultado = tarjeta.getCupones();
+        List<Ticket> resultado = tarjeta.getTickets();
 
         // 3. Verificación: Validamos que la lista no sea nula, tenga tamaño 1 y contenga nuestro cupón
         assertNotNull(resultado, "La lista devuelta no debería ser null");
         assertEquals(1, resultado.size(), "La lista debería contener exactamente 1 cupón");
-        assertEquals(cuponTest, resultado.get(0), "El cupón devuelto debería ser el mismo que se agregó");
+        assertEquals(ticketTest, resultado.get(0), "El cupón devuelto debería ser el mismo que se agregó");
     }
 }

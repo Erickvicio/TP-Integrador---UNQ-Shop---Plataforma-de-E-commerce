@@ -1,9 +1,11 @@
-package main;
+package metodoDePago;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import metodoDePago.MetodosDePago;
 
 
 class MetodosDePagoTest {

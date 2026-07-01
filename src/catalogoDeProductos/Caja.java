@@ -1,4 +1,4 @@
-package main;
+package catalogoDeProductos;
 
 import java.util.HashMap;
 
@@ -7,7 +7,7 @@ public class Caja extends ItemDeCatalogo {
 	HashMap<ItemDeCatalogo,Integer> items;
 	
 	public Caja(String nombre,String descripcion,int descuento, String categoria) {
-		super(nombre,descripcion,descuento, categoria);
+		super(nombre,descripcion,descuento, categoria); 
 		items= new HashMap<>();
 	}
 	
@@ -58,8 +58,12 @@ public class Caja extends ItemDeCatalogo {
 	}
 
 	@Override
-	protected Integer peso() { // Volvió a Integer objeto y a retornar null
+	public double getPeso() {
 		// TODO Auto-generated method stub
-		return null;
+		return items.entrySet().stream()
+	            .mapToDouble(i -> i.getKey().getPeso() * i.getValue())
+	            .sum(); 
 	}
+
+
 }

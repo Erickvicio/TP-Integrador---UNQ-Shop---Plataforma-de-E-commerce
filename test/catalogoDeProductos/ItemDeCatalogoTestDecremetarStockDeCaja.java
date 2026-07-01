@@ -1,12 +1,12 @@
-package main;
+package catalogoDeProductos;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Caja;
-import main.Producto;
+import catalogoDeProductos.Caja;
+import catalogoDeProductos.Producto;
 
 class ItemDeCatalogoTestDecremetarStockDeCaja  {
 	Caja caja1;

@@ -1,10 +1,13 @@
-package main;
+package metodoDePago;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import metodoDePago.ApiTransferenciaBancaria;
+import metodoDePago.TransferenciaBancaria;
 
 
 class TransferenciaBancariaTest {
@@ -102,7 +105,7 @@ class TransferenciaBancariaTest {
     @Test
     void testNotificarResultado_DebeObtenerElComprobanteYRegistrarloEnLaLista() {
         // Creamos un objeto genérico que simule ser el comprobante emitido
-    	main.ComprobanteTransferenciaBancaria comprobanteSimulado = mock(main.ComprobanteTransferenciaBancaria.class);
+    	metodoDePago.ComprobanteTransferenciaBancaria comprobanteSimulado = mock(metodoDePago.ComprobanteTransferenciaBancaria.class);
         
         // Cuando se le pida el cupón/comprobante a la API, devuelve nuestro simulado
         when(apiTransferenciaMock.generarCupon()).thenReturn(comprobanteSimulado);

@@ -1,4 +1,4 @@
-package main;
+package notificacionesDePedido;
 
 public abstract class ArchivoAdjunto {
 	String nombre;

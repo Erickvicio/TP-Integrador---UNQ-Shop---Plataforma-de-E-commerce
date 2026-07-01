@@ -1,4 +1,6 @@
-package main;
+package notificacionesDePedido;
+
+import cicloDeVidaPedido.Estado;
 
 public class Mail extends ArchivoAdjunto {
 	Estado estado;

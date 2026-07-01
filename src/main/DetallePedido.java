@@ -1,5 +1,7 @@
 package main;
 
+import catalogoDeProductos.ItemDeCatalogo;
+
 public class DetallePedido {
 
     private int cantidad;
@@ -32,7 +34,7 @@ public class DetallePedido {
     }
     
     public boolean perteneceAlItem(ItemDeCatalogo unItem) {
-        return this.item != null && this.item.equals(unItem);
+        return this.item != null && this.item.equals(unItem);  
     }
     
     // --- MÉTODOS DE STOCK (DELEGADOS DIRECTO A ITEM) ---
@@ -77,7 +79,7 @@ public class DetallePedido {
         return this.item.precioFinal() * this.cantidad;
     }
     
-    public double getPeso() {
-        return this.item.peso() * this.cantidad;
+    public double getPeso() { 
+        return this.item.getPeso() * this.cantidad;
     }
 }

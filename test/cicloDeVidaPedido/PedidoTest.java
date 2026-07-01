@@ -1,10 +1,17 @@
-package main;
+package cicloDeVidaPedido;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
+import cicloDeVidaPedido.Borrador;
+import cicloDeVidaPedido.Estado;
+import cicloDeVidaPedido.Pedido;
+import main.Direccion;
+import main.Item;
 
 class PedidoTest {
 
@@ -15,7 +22,7 @@ class PedidoTest {
     @BeforeEach
     void setUp() {
         // Al instanciarse acá, se ejecuta el método inicial.
-        pedido = new Pedido(null);
+        pedido = new Pedido("", Mockito.mock(Direccion.class));
         estadoMock = mock(Estado.class);
         itemMock = mock(Item.class);
     }

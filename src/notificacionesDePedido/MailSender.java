@@ -1,4 +1,4 @@
-package main;
+package notificacionesDePedido;
 
 public interface MailSender {
 	

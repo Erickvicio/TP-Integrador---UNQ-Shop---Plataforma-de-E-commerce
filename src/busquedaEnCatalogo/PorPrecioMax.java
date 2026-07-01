@@ -1,4 +1,6 @@
-package main;
+package busquedaEnCatalogo;
+
+import catalogoDeProductos.ItemDeCatalogo;
 
 public class PorPrecioMax implements Criterio {
 

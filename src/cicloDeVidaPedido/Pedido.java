@@ -1,4 +1,12 @@
-package main; 
+package cicloDeVidaPedido;
+
+import java.util.ArrayList;
+
+import catalogoDeProductos.ItemDeCatalogo;
+import main.Carrito;
+import main.Direccion;
+import notificacionesDePedido.ArchivoAdjunto;
+import notificacionesDePedido.Subsistema;
 
 public class Pedido { 
 

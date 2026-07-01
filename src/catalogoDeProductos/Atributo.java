@@ -1,4 +1,4 @@
-package main;
+package catalogoDeProductos;
 
 public class Atributo {
 	String nombre;

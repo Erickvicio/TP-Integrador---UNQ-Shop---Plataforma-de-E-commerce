@@ -1,10 +1,9 @@
-package main;
+package busquedaEnCatalogo;
 
-public class Disyuncion implements Criterio {
+import catalogoDeProductos.ItemDeCatalogo;
 
-	private Criterio c1;
-	private Criterio c2;
-	
+public class Disyuncion extends CriterioBinario {
+
 	public boolean cumple(ItemDeCatalogo catalogo) {
 		return c1.cumple(catalogo) || c2.cumple(catalogo);
 	}

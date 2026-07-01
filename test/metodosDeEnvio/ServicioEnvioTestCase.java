@@ -1,4 +1,4 @@
-package main;
+package metodosDeEnvio;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
@@ -9,9 +9,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import main.Caja;
-import main.Pedido;
-import main.Producto;
+import catalogoDeProductos.Caja;
+import catalogoDeProductos.Producto;
+import cicloDeVidaPedido.Pedido;
+import main.Direccion;
+import metodosDeEnvio.CorreoArgentino;
+import metodosDeEnvio.EnvioExpress;
+import metodosDeEnvio.Estandar;
+import metodosDeEnvio.Express;
+import metodosDeEnvio.RetiroEnSucursal;
+import metodosDeEnvio.ServicioEnvio;
+import metodosDeEnvio.Sucursal;
+import metodosDeEnvio.TipoDeEnvio;
 
 class ServicioEnvioTestCase {
 	
@@ -25,6 +34,8 @@ class ServicioEnvioTestCase {
 	private Pedido unPedido;
 	private CorreoArgentino mCorreoArgentino;
 	private EnvioExpress mEnvioExpress;
+	private Direccion dir;
+	
 	
 	private Sucursal mSucursal;
 	
@@ -42,7 +53,9 @@ class ServicioEnvioTestCase {
 		sExpress 		= new Express(mEnvioExpress);
 		sRetiroSucursal = new RetiroEnSucursal(mSucursal);
 		
-		unPedido = new Pedido(null);
+		
+		dir = Mockito.mock(Direccion.class);
+		unPedido = new Pedido("familiaaquinoerick@gmail.com", dir);
 		
 		Producto unProducto =
 				new Producto(
@@ -66,7 +79,7 @@ class ServicioEnvioTestCase {
 	    );
 		unaCaja.incrementarStock(15);
 		
-		unPedido.agregarItem(unaCaja);
+		unPedido.agregarItem(unaCaja); 
 		unPedido.agregarItem(unProducto);
 		
 		sE = new ServicioEnvio(unPedido);

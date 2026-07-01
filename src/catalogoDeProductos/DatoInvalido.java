@@ -1,4 +1,4 @@
-package main;
+package catalogoDeProductos;
 
 public class DatoInvalido extends RuntimeException {
 	String mensaje;

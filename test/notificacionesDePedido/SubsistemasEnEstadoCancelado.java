@@ -1,4 +1,4 @@
-package test;
+package notificacionesDePedido;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
@@ -6,16 +6,16 @@ import static org.mockito.Mockito.mock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.Cancelado;
-import main.Confirmado;
+import cicloDeVidaPedido.Cancelado;
+import cicloDeVidaPedido.Confirmado;
+import cicloDeVidaPedido.Estado;
+import cicloDeVidaPedido.Pedido;
 import main.Direccion;
-import main.Estado;
-import main.Fidelizacion;
-import main.GeneradordeFactura;
-import main.MailSender;
-import main.NotificadorDeMail;
-import main.Pedido;
-import main.Subsistema;
+import notificacionesDePedido.Fidelizacion;
+import notificacionesDePedido.GeneradordeFactura;
+import notificacionesDePedido.MailSender;
+import notificacionesDePedido.NotificadorDeMail;
+import notificacionesDePedido.Subsistema;
 
 class SubsistemasEnEstadoCancelado {
 	Pedido pedido;

@@ -1,4 +1,4 @@
-package main;
+package cicloDeVidaPedido;
 
 import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertThrows;
@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import cicloDeVidaPedido.Entregado;
+import cicloDeVidaPedido.Pedido;
+import main.Item;
 
 class EntregadoTest {
 
