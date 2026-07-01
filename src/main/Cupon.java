@@ -1,22 +1,10 @@
 package main;
 
-public class Cupon {
-    public int numeroDeCupon;
-    public int precioPagado;
+public class Cupon extends ArchivoAdjunto {
 
-    // Constructor vacío por defecto
-    public Cupon() {}
+	public Cupon(String nombre, String texto) {
+		super(nombre, texto);
+		// TODO Auto-generated constructor stub
+	}
 
-    // Constructor cómodo para pruebas
-    public Cupon(int numeroDeCupon, int precioPagado) {
-        this.numeroDeCupon = numeroDeCupon;
-        this.precioPagado = precioPagado;
-    }
-
-    // Getters y Setters
-    public int getNumeroDeCupon() { return numeroDeCupon; }
-    public void setNumeroDeCupon(int numeroDeCupon) { this.numeroDeCupon = numeroDeCupon; }
-
-    public int getPrecioPagado() { return precioPagado; }
-    public void setPrecioPagado(int precioPagado) { this.precioPagado = precioPagado; }
 }
