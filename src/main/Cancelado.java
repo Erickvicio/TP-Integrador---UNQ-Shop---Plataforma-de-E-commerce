@@ -14,6 +14,11 @@ public class Cancelado extends Estado {
     public void quitarItem(Item item) {
         throw new RuntimeException("Error: No se pueden alterar los artículos de un pedido cancelado.");
     }
+
+	@Override
+	public void mandarCupon(Subsistema s) {
+		s.enviarCupon(pedido);
+	};
 	
 	
 }
