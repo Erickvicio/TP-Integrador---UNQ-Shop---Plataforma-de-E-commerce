@@ -17,4 +17,14 @@ public class Entregado extends Estado {
     public void quitarItem(Item item) {
         throw new RuntimeException("Error: El pedido ya fue cerrado y entregado.");
     }
+	
+	@Override
+	public void mandarMail(Subsistema s) {
+		s.enviarMail(this, pedido);
+	};	
+
+	@Override
+	public void mandarComprobante(Subsistema s) {
+		s.enviarComprobante(pedido);
+	};
 }
