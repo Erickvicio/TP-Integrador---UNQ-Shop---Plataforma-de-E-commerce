@@ -1,17 +1,24 @@
 package main; 
 
 public class Pedido { 
-     
+
+    private String correo;
+	private ArrayList<Subsistema> subsistemas;
+     private ArrayList<ArchivoAdjunto> adjuntos; 
     private Carrito carrito; 
     private Estado estado; 
     private Direccion dir; 
 
     // Constructor 
-    public Pedido(Direccion dir) { 
-        this.dir = dir; 
-        this.carrito = new Carrito(); 
-        this.estadoInicial(); 
-    } 
+    public Pedido(String correo,Direccion dir) {
+		this.correo=correo;
+		this.estadoInicial();
+		this.subsistemas= new ArrayList<>();
+		this.adjuntos= new ArrayList<>();
+		this.dir = dir;
+          this.carrito = new Carrito(); 
+	}
+	
 
     private void estadoInicial() {
     	this.setEstado(new Borrador(this));
@@ -74,4 +81,33 @@ public class Pedido {
     public void setEstado(Estado estado) { 
         this.estado = estado; 
     }
+     
+     public void agregarSubsitema(Subsistema susbistema) {
+		this.subsistemas.add(susbistema);
+	}
+
+     public void notificarSubsitemas() {
+		this.subsistemas.stream().forEach(s -> s.update(estado));
+	}
+	
+	public void quitarSubsistma(Subsistema subsistema) {
+		this.subsistemas.remove(subsistema);
+		
+	}
+	
+	public void agregarArchivoAdjunto(ArchivoAdjunto archivo) {
+		this.adjuntos.add(archivo);
+	}
+	
+	public ArrayList<Subsistema> getSubsistemas() {
+		return subsistemas;
+	}
+
+	public String getCorreo() {
+		return correo;
+	}
+
+     public ArrayList<ArchivoAdjunto> getAdjuntos() {
+		return adjuntos;
+	}
 }
