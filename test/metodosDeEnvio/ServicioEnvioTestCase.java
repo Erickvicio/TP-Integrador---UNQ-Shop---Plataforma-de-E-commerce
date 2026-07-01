@@ -79,7 +79,7 @@ class ServicioEnvioTestCase {
 	    );
 		unaCaja.incrementarStock(15);
 		
-		unPedido.agregarItem(unaCaja); 
+		unPedido.agregarItem(unaCaja);  
 		unPedido.agregarItem(unProducto);
 		
 		sE = new ServicioEnvio(unPedido);

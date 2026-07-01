@@ -34,7 +34,6 @@ public class Carrito {
     }
 
     public void quitarItem_veces(ItemDeCatalogo item, int cantidadAQuitar) { 
-        this.validarItemNoNulo(item); 
         this.validarCantidad(cantidadAQuitar); 
         
         DetallePedido detalleExistente = this.buscarDetallePorItem(item); 
@@ -50,7 +49,6 @@ public class Carrito {
     }
     
     public void agregarItem_veces(ItemDeCatalogo item, int vecesAgregar) {
-        //this.validarItemNoNulo(item); 
         this.validarCantidad(vecesAgregar);
         
         DetallePedido detalleExistente = this.buscarDetallePorItem(item);
@@ -97,11 +95,6 @@ public class Carrito {
         }
     }
 
-    private void validarItemNoNulo(ItemDeCatalogo item) {
-        if (item == null) {
-            throw new RuntimeException("El ítem de catálogo no puede ser nulo.");
-        }
-    }
 
     private void validarCantidad(int cantidad) { 
         if (cantidad <= 0) { 

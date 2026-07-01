@@ -140,7 +140,7 @@ class TarjetaDeCreditoTest {
         // Verificación en el atributo (estado interno de la tarjeta)
         assertEquals(1, tarjetaDeCredito.getTickets().size(), "La lista debería tener un cupón guardado");
         assertTrue(tarjetaDeCredito.getTickets().contains(ticketSimulado), "El cupón debería estar en el atributo de la tarjeta");
-    }
+    } 
     @Test
     void testgetTickets_DebeDevolverLaListaDeTicketesCorrectamente() {
         // 1. Configuración (Dado que necesitas una instancia real para probar su getter)

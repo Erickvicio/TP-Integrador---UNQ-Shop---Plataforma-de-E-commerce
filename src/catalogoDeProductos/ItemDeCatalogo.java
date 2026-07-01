@@ -26,7 +26,7 @@ public abstract class ItemDeCatalogo {
     // Métodos de Stock (dejaron de ser abstractos y ahora tienen comportamiento)
     public void incrementarStock(int cantidad) {
         this.stock = this.stock + cantidad; 
-    }
+    } 
 
     public void decrementarStock(int cantidad) {
         // Podrías agregar acá una validación si no quieren stock negativo

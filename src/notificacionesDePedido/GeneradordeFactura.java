@@ -19,7 +19,7 @@ public class GeneradordeFactura implements Subsistema {
 	@Override
 	public void enviarMail(Estado estado, Pedido p) {
 		// TODO Auto-generated method stub
-
+ 
 	}
 
 	@Override

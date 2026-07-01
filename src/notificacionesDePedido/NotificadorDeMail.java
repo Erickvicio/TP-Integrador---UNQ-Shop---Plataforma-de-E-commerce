@@ -35,7 +35,6 @@ public class NotificadorDeMail implements Subsistema {
 	@Override
 	public void enviarCupon(Pedido p) {
 		// TODO Auto-generated method stub
-
 	}
 
 
