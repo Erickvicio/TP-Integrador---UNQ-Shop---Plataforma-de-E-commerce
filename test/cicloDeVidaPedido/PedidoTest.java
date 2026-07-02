@@ -55,15 +55,25 @@ class PedidoTest {
 
     @Test
     void testAgregarReporteABase() {
-        // Reemplazamos la base creada en el constructor con nuestro mock usando reflexión o inyección directa
-        // Como 'barep' es visible dentro del paquete, lo asignamos de forma directa:
-        pedido.agregarReporteABase();
+        // 1. Creamos la base de reportes real y le inicializamos la lista para que no tire NullPointerException
+        BaseDeReportes baseSana = new BaseDeReportes();
+        baseSana.ventas = new ArrayList<Venta>(); // Inicializamos la lista interna
         
-        // El método actual de Pedido inicializa una nueva BaseDeReportes interna en el constructor (this.barep = new BaseDeReportes())
-        // Si querés verificar que se sume de forma real en tu objeto, podés testear que corra sin errores
-        assertDoesNotThrow(() -> pedido.agregarReporteABase());
-    }
+        // 2. Usamos Reflection para inyectar esta base sana en el atributo privado 'barep' de nuestro objeto pedido
+        assertDoesNotThrow(() -> {
+            java.lang.reflect.Field field = Pedido.class.getDeclaredField("barep");
+            field.setAccessible(true); // Rompemos el "private" temporalmente para el test
+            field.set(pedido, baseSana); // Le asignamos la base sana al objeto 'pedido' del setUp
+        });
 
+        // 3. Ahora ejecutamos el método de negocio con el entorno correctamente preparado
+        assertDoesNotThrow(() -> {
+            pedido.agregarReporteABase();
+        });
+        
+        // 4. Verificamos que efectivamente se haya guardado la venta en la lista de la base
+        assertEquals(1, baseSana.ventas.size(), "La base de reportes debería haber registrado la venta.");
+    }
     @Test
     void testCambioDeEstado() {
         Estado nuevoEstado = mock(Estado.class);
@@ -74,11 +84,7 @@ class PedidoTest {
 
     @Test
     void testDelegacionMetodosCarrito() {
-        // Para verificar la delegación pura al carrito, podemos espiar el carrito que se creó adentro de pedido
-        Carrito carritoSpy = spy(pedido.getCarrito());
-        
-        // Forzamos a Pedido a usar nuestro Spy mediante un refactor o usando el objeto actual
-        // En este caso, para no alterar tu código, probamos que el flujo se ejecute de forma directa:
+        // Probamos que los flujos delegados se ejecuten sin lanzar errores de estructura
         assertDoesNotThrow(() -> {
             pedido.agregarItem(productoPrueba);
             pedido.agregarItem_veces(productoPrueba, 3);
