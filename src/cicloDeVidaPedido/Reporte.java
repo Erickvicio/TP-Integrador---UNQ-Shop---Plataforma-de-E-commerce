@@ -20,6 +20,9 @@ public class Reporte {
 
     public double getPromedioPrecioPorCantidad() {
         return this.promedioPrecioPorCantidad;
+
     }
+
+    
 }
 

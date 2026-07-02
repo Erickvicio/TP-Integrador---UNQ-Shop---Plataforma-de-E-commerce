@@ -1,66 +1,62 @@
 package cicloDeVidaPedido;
 
-import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import cicloDeVidaPedido.Borrador;
-import cicloDeVidaPedido.Confirmado;
-import cicloDeVidaPedido.Pedido;
-import main.Item;
+import catalogoDeProductos.ItemDeCatalogo;
+import catalogoDeProductos.Producto;
 
 class BorradorTest {
 
-    private Borrador borrador;
-    private Pedido pedidoMock;
-    private Item itemMock;
+    Pedido pedidoSpy;
+    Borrador borrador;
+    ItemDeCatalogo productoPrueba;
 
     @BeforeEach
-    void setUp() {
-        pedidoMock = mock(Pedido.class);
-        itemMock = mock(Item.class);
-        borrador = new Borrador(pedidoMock);
+    void setUp() throws Exception {
+        // Creamos un pedido real
+        Pedido pedidoReal = new Pedido(null, null, null);
+        
+        // Creamos el Spy sobre ese pedido para espiar sus interacciones
+        pedidoSpy = spy(pedidoReal);
+        
+        // Se lo pasamos al borrador
+        borrador = new Borrador(pedidoSpy);
+        
+        // Inicializamos el producto de prueba
+        productoPrueba = new Producto("coca", "bebida", 10, 1234, "cocacola", "bebida", 50.0, 1.0);
     }
 
     @Test
-    void testSiguiente_CambiaElEstadoAConfirmadoYDecrementaStock() {
-        // Act
+    void testSiguienteCambiaAEstadoConfirmadoYDecrementaStock() {
+        // Ejecutamos la transición
         borrador.siguiente();
-
-        // Assert: Verifica que pase a Confirmado y reste del stock
-        verify(pedidoMock).setEstado(any(Confirmado.class));
-        verify(pedidoMock).decrementerStock();
+        
+        // 1. Verificamos que se haya llamado al método setEstado en el pedido
+        verify(pedidoSpy).setEstado(any(Confirmado.class));
+        
+        // 2. Verificamos que se haya llamado de forma explícita a decrementar el stock
+        // (Ajustá el nombre exacto si es decrementerStock o decrementarStock)
+        verify(pedidoSpy).decrementerStock(); 
     }
-/*
+
     @Test
-    void testAgregarItem_DelegaLaAccionAlPedido() {
-        // Act & Assert: Usamos el :: con nuestro método auxiliar
-        assertDoesNotThrow(this::ejecutarAgregarItem);
+    void testAgregarItemDelegaAlPedido() {
+        // 1. Ejecutamos el método del Borrador que querés testear
+        borrador.agregarItem(productoPrueba);
+        
+        // 2. Mockito comprueba el "alcance": verifica si se invocó el método interno de Pedido
+        verify(pedidoSpy, times(1)).agregarItem(productoPrueba);
+    }
 
-        // Verifica que el estado borrador le mande el item al pedido real
-        verify(pedidoMock).agregarItem(itemMock);
-    }*/
-/*
     @Test
-    void testQuitarItem_DelegaLaAccionAlPedido() {
-        // Act & Assert: Usamos el :: con nuestro método auxiliar
-        assertDoesNotThrow(this::ejecutarQuitarItem);
-
-        // Verifica que el estado borrador remueva el item del pedido real
-        verify(pedidoMock).quitarItem(itemMock);
-    }*/
-
-    // ==========================================
-    // MÉTODOS AUXILIARES PARA LOGRAR EL VERDE CON ::
-    // ==========================================
-    private void ejecutarAgregarItem() {
-        borrador.agregarItem(itemMock);
+    void testQuitarItemDelegaAlPedido() {
+        // 1. Ejecutamos el método del Borrador
+        borrador.quitarItem(productoPrueba);
+        
+        // 2. Verificamos que la orden de quitar también haya sido delegada al pedido
+        verify(pedidoSpy, times(1)).quitarItem(productoPrueba);
     }
-/*
-    private void ejecutarQuitarItem() {
-        borrador.quitarItem(itemMock);
-    }
-   */
 }

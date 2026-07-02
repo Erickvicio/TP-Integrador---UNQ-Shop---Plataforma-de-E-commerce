@@ -26,7 +26,7 @@ class QuitarSubsistemaDePedidoTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		dir=mock(Direccion.class);
-		pedido= new Pedido("lautaro@gmail.com",dir);
+		pedido= new Pedido("lautaro@gmail.com",dir, null);
 		mailsender= mock(MailSender.class);
 		notificadorDeMail = new NotificadorDeMail(mailsender);
 		fidelizacion = new Fidelizacion();
