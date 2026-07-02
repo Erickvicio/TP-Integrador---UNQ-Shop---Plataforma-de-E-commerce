@@ -1,7 +1,8 @@
 package cicloDeVidaPedido;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-
+import cicloDeVidaPedido.BaseDeReportes;
 import catalogoDeProductos.ItemDeCatalogo;
 import main.Carrito;
 import main.Direccion;
@@ -15,16 +16,18 @@ public class Pedido {
      private ArrayList<ArchivoAdjunto> adjuntos; 
     private Carrito carrito; 
     private Estado estado; 
-    private Direccion dir; 
+    private Direccion dir;
+    private BaseDeReportes barep;
 
     // Constructor 
-    public Pedido(String correo,Direccion dir) {
+    public Pedido(String correo,Direccion dir,BaseDeReportes barep) {
 		this.correo=correo;
 		this.estadoInicial();
 		this.subsistemas= new ArrayList<>();
 		this.adjuntos= new ArrayList<>();
 		this.dir = dir;
-          this.carrito = new Carrito(); 
+        this.carrito = new Carrito();
+        this.barep = new BaseDeReportes();
 	}
 	
 
@@ -33,8 +36,16 @@ public class Pedido {
     }
 
     // VOIDS
+    public void agregarReporteABase() {
+    	this.barep.agregarReporte(this.getCarrito(), LocalDate.now());
+    }
+    private Object getbarep() {
+		// TODO Auto-generated method stub
+		return this.barep;
+	}
 
-    public void agregarItem(ItemDeCatalogo item) { 
+
+	public void agregarItem(ItemDeCatalogo item) { 
         this.carrito.agregarItem(item); 
     }
     

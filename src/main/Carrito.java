@@ -120,7 +120,13 @@ public class Carrito {
         return (float) this.detallePedidos.stream() 
                 .mapToDouble(detalle -> detalle.getPrecio()) 
                 .sum(); 
-    } 
+    }
+    
+    public int getCantidadTotal() {
+        return this.detallePedidos.stream()
+                .mapToInt(detalle -> detalle.getCantidad())
+                .sum();
+    }
      
     public float getPesoTotal() { 
         return (float) this.detallePedidos.stream() 
