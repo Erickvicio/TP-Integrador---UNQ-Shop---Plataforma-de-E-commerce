@@ -32,7 +32,7 @@ public class BaseDeReportes {
 		Double precio  = ventasEnPeriodo.stream().mapToDouble(n -> n.getPrecio()).sum();
 		
 		
-		Reporte reporte = new Reporte(ventasEnPeriodo,(precio/cantidad));
+		ReporteDeMasVendido reporte = new ReporteDeMasVendido(ventasEnPeriodo,(precio/cantidad));
 		
 	}
 	
