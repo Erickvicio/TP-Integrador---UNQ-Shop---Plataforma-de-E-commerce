@@ -3,77 +3,130 @@ package cicloDeVidaPedido;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
-import cicloDeVidaPedido.Borrador;
-import cicloDeVidaPedido.Estado;
-import cicloDeVidaPedido.Pedido;
+import catalogoDeProductos.ItemDeCatalogo;
+import catalogoDeProductos.Producto;
+import main.Carrito;
 import main.Direccion;
-import main.Item;
+import notificacionesDePedido.ArchivoAdjunto;
+import notificacionesDePedido.Subsistema;
 
 class PedidoTest {
 
-    private Pedido pedido;
-    private Estado estadoMock;
-    private Item itemMock;
+    Pedido pedido;
+    Direccion direccionMock;
+    BaseDeReportes baseDeReportesMock;
+    ItemDeCatalogo productoPrueba;
+    Subsistema subsistemaMock;
+    ArchivoAdjunto archivoMock;
 
     @BeforeEach
-    void setUp() {
-        // Al instanciarse acá, se ejecuta el método inicial.
-        pedido = new Pedido("", Mockito.mock(Direccion.class));
-        estadoMock = mock(Estado.class);
-        itemMock = mock(Item.class);
+    void setUp() throws Exception {
+        // Mocks de las dependencias requeridas por el constructor
+        direccionMock = mock(Direccion.class);
+        baseDeReportesMock = mock(BaseDeReportes.class);
+        
+        // Inicializamos el pedido real
+        pedido = new Pedido("test@correo.com", direccionMock, baseDeReportesMock);
+        
+        // Mocks adicionales para los métodos de negocio
+        productoPrueba = mock(Producto.class);
+        subsistemaMock = mock(Subsistema.class);
+        archivoMock = mock(ArchivoAdjunto.class);
     }
 
     @Test
-    void testEstadoInicial_AlCrearUnPedidoDebeAsignarElEstadoBorrador() {
-        // Act & Assert
-        // Al verificar que arranca siendo una instancia de Borrador, JaCoCo
-        // se ve obligado a pintar de verde las líneas de inicialización del Pedido.
-        assertNotNull(pedido.getEstado());
-        assertInstanceOf(Borrador.class, pedido.getEstado());
-    }
-/*
-    @Test
-    void testAgregarItem_DebeAgregarElProductoALaLista() {
-        assertTrue(pedido.getProductos().isEmpty());
-
-        pedido.agregarItem(itemMock);
-
-        assertEquals(1, pedido.getProductos().size());
-        assertTrue(pedido.getProductos().contains(itemMock));
+    void testConstructorEInicializacion() {
+        assertEquals("test@correo.com", pedido.getCorreo());
+        assertEquals(direccionMock, pedido.getDir());
+        assertNotNull(pedido.getCarrito());
+        
+        // Verificamos que el estado inicial sea Borrador
+        assertTrue(pedido.getEstado() instanceof Borrador);
+        
+        // Listas iniciales vacías
+        assertTrue(pedido.getSubsistemas().isEmpty());
+        assertTrue(pedido.getAdjuntos().isEmpty());
     }
 
     @Test
-    void testQuitarItem_DebeEliminarElProductoDeLaLista() {
-        pedido.agregarItem(itemMock);
-        assertFalse(pedido.getProductos().isEmpty());
+    void testAgregarReporteABase() {
+        // 1. Creamos la base de reportes real y le inicializamos la lista para que no tire NullPointerException
+        BaseDeReportes baseSana = new BaseDeReportes();
+        baseSana.ventas = new ArrayList<Venta>(); // Inicializamos la lista interna
+        
+        // 2. Usamos Reflection para inyectar esta base sana en el atributo privado 'barep' de nuestro objeto pedido
+        assertDoesNotThrow(() -> {
+            java.lang.reflect.Field field = Pedido.class.getDeclaredField("barep");
+            field.setAccessible(true); // Rompemos el "private" temporalmente para el test
+            field.set(pedido, baseSana); // Le asignamos la base sana al objeto 'pedido' del setUp
+        });
 
-        pedido.quitarItem(itemMock);
-
-        assertTrue(pedido.getProductos().isEmpty());
+        // 3. Ahora ejecutamos el método de negocio con el entorno correctamente preparado
+        assertDoesNotThrow(() -> {
+            pedido.agregarReporteABase();
+        });
+        
+        // 4. Verificamos que efectivamente se haya guardado la venta en la lista de la base
+        assertEquals(1, baseSana.ventas.size(), "La base de reportes debería haber registrado la venta.");
     }
-*/
     @Test
-    void testSetEstado_DebeCambiarElEstadoDelPedidoYElGetterRetornarlo() {
-        // Primero verificamos que arrancó en Borrador (así cubrimos el getter inicial)
-        assertInstanceOf(Borrador.class, pedido.getEstado());
-
-        // Cambiamos al mock (así cubrimos el setEstado completo)
-        pedido.setEstado(estadoMock);
-
-        // Verificamos el cambio
-        assertEquals(estadoMock, pedido.getEstado());
+    void testCambioDeEstado() {
+        Estado nuevoEstado = mock(Estado.class);
+        pedido.setEstado(nuevoEstado);
+        
+        assertEquals(nuevoEstado, pedido.getEstado());
     }
 
     @Test
-    void testMetodosVacios_NoDeberianRomperNiLanzarExcepciones() {
-        assertDoesNotThrow(() -> pedido.decrementerStock());
-        assertDoesNotThrow(() -> pedido.incrementarStock());
-        assertDoesNotThrow(() -> pedido.rembolsaCosto());
-        assertDoesNotThrow(() -> pedido.rembolsaEnvio());
-        assertDoesNotThrow(() -> pedido.rembolsaCostoYEnvio());
+    void testDelegacionMetodosCarrito() {
+        // Probamos que los flujos delegados se ejecuten sin lanzar errores de estructura
+        assertDoesNotThrow(() -> {
+            pedido.agregarItem(productoPrueba);
+            pedido.agregarItem_veces(productoPrueba, 3);
+            pedido.quitarItem(productoPrueba);
+            pedido.quitarItem_veces(productoPrueba, 2);
+            pedido.decrementerStock();
+            pedido.incrementarStock();
+        });
+    }
+
+    @Test
+    void testGestionDeSubsistemasYNotificacion() {
+        // Agregar subsistema
+        pedido.agregarSubsitema(subsistemaMock);
+        assertEquals(1, pedido.getSubsistemas().size());
+        assertTrue(pedido.getSubsistemas().contains(subsistemaMock));
+
+        // Notificar (Observer pattern)
+        pedido.notificarSubsitemas();
+        // Verificamos que el subsistema haya recibido el update con el estado actual
+        verify(subsistemaMock, times(1)).update(pedido.getEstado());
+
+        // Quitar subsistema
+        pedido.quitarSubsistma(subsistemaMock);
+        assertTrue(pedido.getSubsistemas().isEmpty());
+    }
+
+    @Test
+    void testAgregarArchivoAdjunto() {
+        pedido.agregarArchivoAdjunto(archivoMock);
+        
+        assertEquals(1, pedido.getAdjuntos().size());
+        assertTrue(pedido.getAdjuntos().contains(archivoMock));
+    }
+
+    @Test
+    void testMetodosDeNegocioPendientesNoLanzanError() {
+        // Verificamos que los métodos vacíos corran sin romper el flujo
+        assertDoesNotThrow(() -> {
+            pedido.rembolsaCostoYEnvio();
+            pedido.rembolsaCosto();
+            pedido.rembolsaEnvio();
+        });
     }
 }

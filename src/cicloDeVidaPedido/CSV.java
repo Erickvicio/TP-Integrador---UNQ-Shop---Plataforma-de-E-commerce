@@ -8,7 +8,7 @@ public class CSV implements FormatoVisitor {
 
 	@Override
 	public void visitarReporteDeMasVendido(ReporteDeMasVendido r) {
-		// TODO Auto-generated method stub
+		// este es el metodo para presentar el reporte en formato CSV
 
 	}
 
