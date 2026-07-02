@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import catalogoDeProductos.ItemDeCatalogo;
 import cicloDeVidaPedido.Cancelado;
 import cicloDeVidaPedido.Pedido;
 import main.Item;
@@ -16,19 +17,19 @@ class CanceladoTest {
 
     private Cancelado cancelado;
     private Pedido pedidoMock;
-    private Item itemMock;
+    private ItemDeCatalogo itemMock;
 
     @BeforeEach
     void setUp() {
         pedidoMock = mock(Pedido.class);
-        itemMock = mock(Item.class);
+        itemMock = mock(ItemDeCatalogo.class);
         cancelado = new Cancelado(pedidoMock);
     }
 
     @Test
     void testAgregarItem_CuandoElPedidoEstaCancelado_LanzaExcepcion() {
         // Referenciamos el método con :: puro sin abrir bloques ni flechas
-        Consumer<Item> accion = cancelado::agregarItem;
+        Consumer<ItemDeCatalogo> accion = cancelado::agregarItem;
 
         // JUnit ejecuta la aceptación del consumidor en una sola línea plana
         Exception excepcion = assertThrows(RuntimeException.class, () -> accion.accept(itemMock));
@@ -38,7 +39,7 @@ class CanceladoTest {
 
     @Test
     void testQuitarItem_CuandoElPedidoEstaCancelado_LanzaExcepcion() {
-        Consumer<Item> accion = cancelado::quitarItem;
+        Consumer<ItemDeCatalogo> accion = cancelado::quitarItem;
 
         Exception excepcion = assertThrows(RuntimeException.class, () -> accion.accept(itemMock));
 

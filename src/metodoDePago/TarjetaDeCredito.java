@@ -19,7 +19,7 @@ public class TarjetaDeCredito extends MetodosDePago {
         this.tickets = new ArrayList<>(); // Inicializamos la lista vacía
     }
 
-    
+     
     @Override
     public void validarDatos() {
         this.validarVencimiento();

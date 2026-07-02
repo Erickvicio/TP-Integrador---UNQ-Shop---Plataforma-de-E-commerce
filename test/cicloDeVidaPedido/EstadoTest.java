@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import catalogoDeProductos.ItemDeCatalogo;
 import cicloDeVidaPedido.Cancelado;
 import cicloDeVidaPedido.Estado;
 import cicloDeVidaPedido.Pedido;
@@ -47,7 +48,7 @@ class EstadoTest {
 
     @Test
     void testAgregarItem_NoHaceNadaPorDefecto() {
-        Item itemMock = mock(Item.class);
+        ItemDeCatalogo itemMock = mock(ItemDeCatalogo.class);
         
         // Act & Assert: Verificamos que corra sin lanzar excepciones (método vacío)
         assertDoesNotThrow(() -> estadoSpy.agregarItem(itemMock));
@@ -55,7 +56,7 @@ class EstadoTest {
 
     @Test
     void testQuitarItem_NoHaceNadaPorDefecto() {
-        Item itemMock = mock(Item.class);
+    	ItemDeCatalogo itemMock = mock(ItemDeCatalogo.class);
         
         // Act & Assert: Verificamos que corra sin lanzar excepciones (método vacío)
         assertDoesNotThrow(() -> estadoSpy.quitarItem(itemMock));

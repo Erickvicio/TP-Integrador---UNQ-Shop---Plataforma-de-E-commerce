@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import catalogoDeProductos.ItemDeCatalogo;
 import cicloDeVidaPedido.Cancelado;
 import cicloDeVidaPedido.Entregado;
 import cicloDeVidaPedido.Enviado;
@@ -16,12 +17,12 @@ class EnviadoTest {
 
     private Enviado enviado;
     private Pedido pedidoMock;
-    private Item itemMock;
+    private ItemDeCatalogo itemMock;
 
     @BeforeEach
     void setUp() {
         pedidoMock = mock(Pedido.class);
-        itemMock = mock(Item.class);
+        itemMock = mock(ItemDeCatalogo.class);
         enviado = new Enviado(pedidoMock);
     }
 

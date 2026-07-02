@@ -30,8 +30,8 @@ public class NotificadorDeMail implements Subsistema {
 	public void enviarComprobante(Pedido p) {
 		// TODO Auto-generated method stub
 
-	}
-
+	} 
+ 
 	@Override
 	public void enviarCupon(Pedido p) {
 		// TODO Auto-generated method stub

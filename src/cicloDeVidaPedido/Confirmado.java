@@ -1,32 +1,29 @@
 package cicloDeVidaPedido;
 
-import main.Item;
+import catalogoDeProductos.ItemDeCatalogo;
 import notificacionesDePedido.Subsistema;
+
 
 public class Confirmado extends Estado {
 
-    public Confirmado(Pedido pedido) {
-        this.pedido = pedido;
+    public Confirmado(Pedido pedido) { 
+        this.pedido = pedido; 
     }
 	public void cancelado(){
-		
-		
-	this.pedido.setEstado(new Cancelado(this.pedido));
-	pedido.incrementarStock();
-		
+		 
+		this.pedido.setEstado(new Cancelado(this.pedido));
+		pedido.incrementarStock();
 	}
 	
 	public void siguiente(){
 		this.pedido.setEstado(new En_Preparacion(this.pedido));
 	}
 	
-	@Override
-    public void agregarItem(Item item) {
+	public void agregarItemDeCatalogo(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está confirmado. No se pueden sumar más artículos.");
     }
 
-    @Override
-    public void quitarItem(Item item) {
+    public void quitarItemDeCatalogo(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está confirmado. Modificación denegada.");
     }
 

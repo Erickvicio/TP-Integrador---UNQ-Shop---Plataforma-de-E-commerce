@@ -19,7 +19,7 @@ public class RetiroEnSucursal implements TipoDeEnvio {
 	public int entregaEstimada(Pedido pedido) {
 		
 		int ret = (sucursal.hayStock(pedido)) ? 1: 3;
-		return ret;
+		return ret; 
 	}
 
 }

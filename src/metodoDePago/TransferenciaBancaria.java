@@ -39,12 +39,8 @@ public class TransferenciaBancaria extends MetodosDePago{
         }
     }
         
-    public void reservarFondos() {
-    	
-    }
-
     
-    public void ejecutarTransicion() {
+    public void ejecutarTransicion() { 
     	
     	this.apiTransferenciaBancaria.transferenciaInmediataOProgramada();
     }
@@ -65,5 +61,11 @@ public class TransferenciaBancaria extends MetodosDePago{
  // Setters para los Tests
     public void setcvu(int cvu) { this.cvu = cvu; }
     public void setAlias(String alias) { this.alias = alias; }
+
+	@Override
+	public void reservarFondos() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

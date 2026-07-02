@@ -10,7 +10,7 @@ public class Negacion implements Criterio {
 		return !c1.cumple(catalogo);
 	}
 	
-	public Negacion(Criterio c1) {
+	public Negacion(Criterio c1) { 
 		this.c1 = c1;
 	}
 

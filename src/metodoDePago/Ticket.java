@@ -16,13 +16,11 @@ public class Ticket {
 
 	public void setNumeroDeTicket(int numeroTicket) {
 		this.numeroTicket = numeroTicket;
-		
 	}
 
 	public void setPrecioPagado(double precioPagado) {
 		this.precioPagado = precioPagado;
-		
-	}
+	} 
 
 	public Integer getNumeroDeTicket() {
 		return numeroTicket;

@@ -19,7 +19,7 @@ public class Borrador extends Estado{
 	
     public void agregarItem(ItemDeCatalogo item) {
         pedido.agregarItem(item);
-    }
+    } 
 
     public void quitarItem(ItemDeCatalogo item) {
     	pedido.quitarItem(item); 

@@ -13,14 +13,7 @@ import catalogoDeProductos.Caja;
 import catalogoDeProductos.Producto;
 import cicloDeVidaPedido.Pedido;
 import main.Direccion;
-import metodosDeEnvio.CorreoArgentino;
-import metodosDeEnvio.EnvioExpress;
-import metodosDeEnvio.Estandar;
-import metodosDeEnvio.Express;
-import metodosDeEnvio.RetiroEnSucursal;
-import metodosDeEnvio.ServicioEnvio;
-import metodosDeEnvio.Sucursal;
-import metodosDeEnvio.TipoDeEnvio;
+
 
 class ServicioEnvioTestCase {
 	

@@ -1,5 +1,6 @@
 package cicloDeVidaPedido;
 
+import catalogoDeProductos.ItemDeCatalogo;
 import main.Item;
 
 public class En_Preparacion extends Estado {
@@ -15,16 +16,14 @@ public class En_Preparacion extends Estado {
 	pedido.rembolsaCostoYEnvio();
 	}
 	public void siguiente(){
-		
+		 
 	this.pedido.setEstado(new Enviado(this.pedido));
 	}
-	@Override
-    public void agregarItem(Item item) {
+	public void agregarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está en preparación en el depósito.");
     }
 
-    @Override
-    public void quitarItem(Item item) {
+    public void quitarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: No se pueden remover ítems de un pedido en preparación.");
     }
 	

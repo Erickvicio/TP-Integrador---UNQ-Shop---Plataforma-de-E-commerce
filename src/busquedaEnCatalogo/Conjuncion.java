@@ -12,5 +12,5 @@ public class Conjuncion extends CriterioBinario {
 	public Conjuncion(Criterio c1, Criterio c2) {
 		this.c1 = c1; this.c2 = c2;
 	}
-
+ 
 }

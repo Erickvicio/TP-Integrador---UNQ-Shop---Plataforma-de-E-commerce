@@ -13,3 +13,4 @@ public class Disyuncion extends CriterioBinario {
 	}
 
 }
+ 

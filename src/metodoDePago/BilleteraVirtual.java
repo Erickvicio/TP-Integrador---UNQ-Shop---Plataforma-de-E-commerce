@@ -29,5 +29,5 @@ public class BilleteraVirtual extends MetodosDePago {
     
     public void notificarResultado() {
         this.apiBilletera.enviarNotificacionPush();
-    }
+    } 
 }

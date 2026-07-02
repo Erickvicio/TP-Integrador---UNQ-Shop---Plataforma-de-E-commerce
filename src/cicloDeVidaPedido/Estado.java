@@ -1,6 +1,6 @@
 package cicloDeVidaPedido;
 
-import main.Item;
+import catalogoDeProductos.ItemDeCatalogo;
 import notificacionesDePedido.Subsistema;
 
 public abstract class Estado {
@@ -16,8 +16,8 @@ public abstract class Estado {
 		
 	}
 	
-    public void agregarItem(Item item) {}
-    public void quitarItem(Item item) {}
+    public void agregarItem(ItemDeCatalogo item) {}
+    public void quitarItem(ItemDeCatalogo item) {} 
 
 	public void mandarMail(Subsistema s) {};	
 	public void mandarComprobante(Subsistema s) {};

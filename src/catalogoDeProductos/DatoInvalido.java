@@ -9,3 +9,8 @@ public class DatoInvalido extends RuntimeException {
 	}
 	
 }
+
+/*
+ * Case explicitamente creada con el fin de testear
+ * errores construccion de objetos con datos erroneos
+ */

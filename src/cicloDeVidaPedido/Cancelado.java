@@ -1,6 +1,6 @@
 package cicloDeVidaPedido;
 
-import main.Item;
+import catalogoDeProductos.ItemDeCatalogo;
 import notificacionesDePedido.Subsistema;
 
 public class Cancelado extends Estado {
@@ -9,12 +9,12 @@ public class Cancelado extends Estado {
         this.pedido = pedido;
     }
     @Override
-    public void agregarItem(Item item) {
+    public void agregarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido está cancelado. Debe iniciar uno nuevo.");
-    }
+    } 
 
     @Override
-    public void quitarItem(Item item) {
+    public void quitarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: No se pueden alterar los artículos de un pedido cancelado.");
     }
 
