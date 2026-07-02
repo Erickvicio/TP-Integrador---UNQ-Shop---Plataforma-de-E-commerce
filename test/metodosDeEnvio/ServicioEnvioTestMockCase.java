@@ -28,7 +28,7 @@ class ServicioEnvioTestMockCase {
 	
 	private Pedido unPedido;
 	private CorreoArgentino mCorreoArgentino;
-	private EnvioExpress mEnvioExpress;
+	private EnvioExpress mEnvioExpress; 
 	
 	private Sucursal mSucursal;
 	

@@ -28,7 +28,7 @@ class SubsistemasEnEstadoConfirmadoTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		dir=mock(Direccion.class);
-		pedido= new Pedido("lautaro@gmail.com",dir);
+		pedido= new Pedido("lautaro@gmail.com",dir, null);
 		confirmado= new Confirmado(pedido);
 		mailsender= mock(MailSender.class);
 		notificadorDeMail = new NotificadorDeMail(mailsender);

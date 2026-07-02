@@ -51,7 +51,7 @@ class ConfirmadoTest {
         Exception excepcion = assertThrows(RuntimeException.class, this::ejecutarAgregarItem);
 
         assertEquals("Error: El pedido ya está confirmado. No se pueden sumar más artículos.", excepcion.getMessage());
-    }
+    } 
 
     @Test
     void testQuitarItem_CuandoElPedidoEstaConfirmado_LanzaExcepcion() {

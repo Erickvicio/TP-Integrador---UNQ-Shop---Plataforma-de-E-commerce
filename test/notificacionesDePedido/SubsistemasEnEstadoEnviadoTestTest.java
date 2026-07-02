@@ -30,7 +30,7 @@ class SubsistemasEnEstadoEnviadoTestTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		dir=mock(Direccion.class);
-		pedido= new Pedido("juan@gmail.com",dir);
+		pedido= new Pedido("juan@gmail.com",dir, null);
 		enviado= new Enviado(pedido);
 		mailsender= mock(MailSender.class);
 		notificadorDeMail = new NotificadorDeMail(mailsender);
