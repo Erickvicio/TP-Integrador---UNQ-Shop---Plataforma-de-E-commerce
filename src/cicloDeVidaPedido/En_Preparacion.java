@@ -18,6 +18,7 @@ public class En_Preparacion extends Estado {
 	public void siguiente(){
 		 
 	this.pedido.setEstado(new Enviado(this.pedido));
+	pedido.notificarSubsitemas();
 	}
 	public void agregarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está en preparación en el depósito.");

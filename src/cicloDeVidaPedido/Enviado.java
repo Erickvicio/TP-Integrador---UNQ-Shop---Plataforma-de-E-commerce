@@ -19,6 +19,7 @@ public class Enviado extends Estado {
 	
 	public void siguiente(){
 		this.pedido.setEstado(new Entregado(this.pedido));
+		pedido.notificarSubsitemas();
 	}
 	
 	

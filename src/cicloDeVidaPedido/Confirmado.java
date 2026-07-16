@@ -17,6 +17,8 @@ public class Confirmado extends Estado {
 	
 	public void siguiente(){
 		this.pedido.setEstado(new En_Preparacion(this.pedido));
+		this.pedido.iniciarProcesoDePago();
+		pedido.notificarSubsitemas();
 	}
 	
 	public void agregarItem(ItemDeCatalogo item) {
@@ -32,7 +34,7 @@ public class Confirmado extends Estado {
 		s.enviarMail(this, pedido);
 	};
 	
-	public void iniciarProcesoDePago(float montoAPagar){
-		this.pedido.getMetodoDePago().iniciarProcesoPago(montoAPagar);
-	}
+//	public void iniciarProcesoDePago(float montoAPagar){
+//		this.pedido.getMetodoDePago().iniciarProcesoPago(montoAPagar);
+//	}
 } 

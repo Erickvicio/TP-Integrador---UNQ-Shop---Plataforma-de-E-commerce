@@ -35,14 +35,14 @@ public class Pedido {
     	this.metodoPago = metodoPago;
     }
     
-    private void realizarPago() {
+//    private void realizarPago() {
     	
-    	this.estado.iniciarProcesoDePago(getPrecioConEnvio());
-    	this.estado.siguiente();
-    	this.notificarSubsitemas();
+//    	this.estado.iniciarProcesoDePago(getPrecioConEnvio());
+//    	this.estado.siguiente();
+//    	this.notificarSubsitemas();
     	
 //    	metodoPago.iniciarProcesoPago(getPrecioConEnvio());
-    }
+//    }
     
     public MetodosDePago getMetodoDePago() {
     	return this.metodoPago;
@@ -131,7 +131,23 @@ public class Pedido {
 		return this.barep;
 	} 
 
+    public void agregarItemE(ItemDeCatalogo item) { 
+        this.estado.agregarItem(item); 
+    }
+    
+    public void agregarItem_vecesE(ItemDeCatalogo item, int vecesAgregar) {
+        this.carrito.agregarItem_veces(item, vecesAgregar);
+    } 
 
+    public void quitarItemE(ItemDeCatalogo item) { 
+        this.estado.quitarItem(item); 
+    } 
+    
+    public void quitarItem_vecesE(ItemDeCatalogo item, int cantidadAQuitar) { 
+        this.estado.quitarItem_veces(item, cantidadAQuitar);
+    } 
+    
+///////
 	public void agregarItem(ItemDeCatalogo item) { 
         this.carrito.agregarItem(item); 
     }
@@ -156,7 +172,6 @@ public class Pedido {
         this.carrito.incrementarStock(); 
     }
     
-    // Métodos de negocio pendientes
     public void rembolsaCostoYEnvio(){
     	metodoPago.reembolsar(getPrecioConEnvio());
     } 
@@ -227,8 +242,15 @@ public class Pedido {
 		return adjuntos;
 	}
 
-	 public void confirmarPedido() {
-		 this.realizarPago();
+//	 public void confirmarPedido() {
+//		 this.realizarPago();
 //		 this.estado.siguiente();
-	 }
+     
+     public void iniciarProcesoDePago() {
+    	 this.metodoPago.iniciarProcesoPago(this.carrito.getPrecioTotal());
+     }
+     
+     public void siguiente() {
+    	 this.estado.siguiente();
+     }
 }

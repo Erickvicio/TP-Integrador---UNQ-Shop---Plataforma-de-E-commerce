@@ -23,5 +23,8 @@ public class Cancelado extends Estado {
 		s.enviarCupon(pedido);
 	};
 	
+	public void siguiente() {
+		pedido.notificarSubsitemas();
+	}
 	
 }

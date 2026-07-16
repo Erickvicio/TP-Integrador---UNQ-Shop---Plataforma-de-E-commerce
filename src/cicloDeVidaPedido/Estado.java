@@ -18,6 +18,8 @@ public abstract class Estado {
 	
     public void agregarItem(ItemDeCatalogo item) {}
     public void quitarItem(ItemDeCatalogo item) {} 
+    public void agregarItem(ItemDeCatalogo item,int veces) {}
+  	public void quitarItem_veces(ItemDeCatalogo item,int veces) {} 
 
 	public void mandarMail(Subsistema s) {};	
 	public void mandarComprobante(Subsistema s) {};
@@ -25,5 +27,5 @@ public abstract class Estado {
 	
 	
 	// El unico con implementacion es el Confirmado, el resto "tira error" (no hace nada)
-	public void iniciarProcesoDePago(float montoAPagar) {}
+	//public void iniciarProcesoDePago(float montoAPagar) {}
 }  

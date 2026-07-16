@@ -31,4 +31,8 @@ public class Entregado extends Estado {
 	public void mandarComprobante(Subsistema s) {
 		s.enviarComprobante(pedido);
 	}; 
+	
+	public void siguiente() {
+		pedido.notificarSubsitemas();
+	}
 }

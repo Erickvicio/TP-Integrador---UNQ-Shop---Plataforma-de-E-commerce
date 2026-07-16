@@ -14,6 +14,7 @@ public class Borrador extends Estado{
 	public void siguiente(){
 		this.pedido.setEstado(new Confirmado(this.pedido));
 			pedido.decrementerStock(); 	// Esto decrementa el stock global de ItemDeCatalogo que se encuentre en el pedido
+			pedido.notificarSubsitemas();
 	}
 	
 	
@@ -24,5 +25,14 @@ public class Borrador extends Estado{
     public void quitarItem(ItemDeCatalogo item) {
     	pedido.quitarItem(item); 
     }
+    
+    public void agregarItem(ItemDeCatalogo item,int veces) {
+    	pedido.agregarItem_veces(item, veces);;
+    }
+    
+  	public void quitarItem_veces(ItemDeCatalogo item,int veces) {
+  		pedido.quitarItem_veces(item, veces);
+  		
+  	} 
 } 
  
