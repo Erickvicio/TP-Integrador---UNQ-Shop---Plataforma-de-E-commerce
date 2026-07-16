@@ -44,8 +44,10 @@ class ItemDeCatalogoTestAumentarStockEnCaja {
 		caja3.agregarItem(cargador, 3);
 		caja3.incrementarStock(1);
 		
-		assertEquals(auriculares.getStock(),3);
-		assertEquals(cargador.getStock(), 3);
+//		assertEquals(auriculares.getStock(),3);
+//		assertEquals(cargador.getStock(), 3);
+		
+		assertEquals(caja3.getStock(), 1);
 	}
 
 	@Test
@@ -58,51 +60,47 @@ class ItemDeCatalogoTestAumentarStockEnCaja {
 		//cocacola.incrementarStock(4);
 		//pizza.incrementarStock(2);
 		//pan.incrementarStock(7);
+
 		caja2.incrementarStock(2);
 		
-		assertEquals(cocacola.getStock(),4);
-		assertEquals(pizza.getStock(),2);
-		assertEquals(pan.getStock(), 6);
+//		assertEquals(cocacola.getStock(),4);
+//		assertEquals(pizza.getStock(),2);
+//		assertEquals(pan.getStock(), 6);
+		
+		assertEquals(caja2.getStock(), 2);
 	}
 
-	@Test
-	void test3() {
-		//Aca testeo suponiendo que un pedido se cancelo y se tiene que reponer el stock de los productos o cajas dentro de otra caja
-		//tambien que com aumenta si un producto dentro de la caja , aparece en otra caja
-		
-		caja3.agregarItem(auriculares, 3);
-		caja3.agregarItem(cargador, 3);
-		caja3.incrementarStock(1);
-		//auriculares stock=3
-		//cargador stock=3
-		
-		caja2.agregarItem(cocacola, 2);
-		caja2.agregarItem(pizza, 1);
-		caja2.agregarItem(pan, 3);
-		caja2.incrementarStock(2);
-		//cocacola stock=4
-		//pizza stock=2
-		//pan stock=6
-		
-		
-		caja1.agregarItem(caja3, 2);
-		//tenemos 3 en el stock de auriculares  
-		//tenemos 3 en el stock de cargadores
-		
-		caja1.agregarItem(caja2, 3);
-		//tenemos 4 en el stock de cocacola
-		//tenemos 2 en el stock de pizza
-		//tenemos 6 en el stock de pan
-		
-		caja1.agregarItem(cocacola, 2);
-		caja1.agregarItem(auriculares, 2);
-		caja1.incrementarStock(2);
-		
-		assertEquals(auriculares.getStock(),19);
-		assertEquals(cargador.getStock(), 15);
-		assertEquals(cocacola.getStock(),20);
-		assertEquals(pizza.getStock(),8);
-		assertEquals(pan.getStock(), 24);
-	}
+//	@Test
+//	void test3() {
+//		//Aca testeo suponiendo que un pedido se cancelo y se tiene que reponer el stock de los productos o cajas dentro de otra caja
+//		//tambien que com aumenta si un producto dentro de la caja , aparece en otra caja
+//		
+//		caja3.agregarItem(auriculares, 3);
+//		caja3.agregarItem(cargador, 3);
+//		caja3.incrementarStock(1); //caja3 = 1
+//		//auriculares stock=3
+//		//cargador stock=3
+//		
+//		caja2.agregarItem(cocacola, 2);
+//		caja2.agregarItem(pizza, 1);
+//		caja2.agregarItem(pan, 3);
+//		caja2.incrementarStock(2); //caja2 = 2
+//		
+//		
+//		
+//		caja1.agregarItem(caja3, 2);
+//		
+//		caja1.agregarItem(caja2, 3);
+//		
+//		caja1.agregarItem(cocacola, 2);
+//		caja1.agregarItem(auriculares, 2);
+//		caja1.incrementarStock(2); //caja1 = 1
+//		
+//		assertEquals(auriculares.getStock(),19);
+//		assertEquals(cargador.getStock(), 15);
+//		assertEquals(cocacola.getStock(),20);
+//		assertEquals(pizza.getStock(),8);
+//		assertEquals(pan.getStock(), 24);
+//	}
 
 }

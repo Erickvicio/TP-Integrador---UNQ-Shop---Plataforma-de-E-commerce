@@ -36,3 +36,7 @@ public class Enviado extends Estado {
 		s.enviarMail(this, pedido);
 	};	
 }
+
+/*
+ * Solo coste del envio. . . 
+ */

@@ -8,7 +8,7 @@ public class Venta {
 	private Carrito car;
 	private LocalDate fecha;
 
-
+ 
 	public Venta (Carrito car, LocalDate fecha) {
 		
 		this.car = car;

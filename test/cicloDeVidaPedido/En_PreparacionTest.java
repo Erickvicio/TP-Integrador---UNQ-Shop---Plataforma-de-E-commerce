@@ -70,6 +70,6 @@ class En_PreparacionTest {
     }
 
     private void ejecutarQuitarItem() {
-        enPreparacion.quitarItem(itemMock);
+        enPreparacion.quitarItem(itemMock); 
     }
 }

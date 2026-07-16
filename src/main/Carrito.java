@@ -116,7 +116,7 @@ public class Carrito {
                 .orElse(null);
     }
      
-    public float getPrecioTotal() { 
+    public float getPrecioTotal() {  
         return (float) this.detallePedidos.stream() 
                 .mapToDouble(detalle -> detalle.getPrecio()) 
                 .sum(); 

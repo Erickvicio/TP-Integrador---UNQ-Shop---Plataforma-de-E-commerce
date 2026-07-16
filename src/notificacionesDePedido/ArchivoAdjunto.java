@@ -7,6 +7,6 @@ public abstract class ArchivoAdjunto {
 	public ArchivoAdjunto(String nombre,String texto) {
 		this.nombre=nombre;
 		this.texto=texto;
-	}
+	} 
 
 }

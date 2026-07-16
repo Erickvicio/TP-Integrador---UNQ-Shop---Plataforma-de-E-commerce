@@ -28,7 +28,7 @@ class TransferenciaBancariaTest {
         // transferenciaBancaria.setComprobantesTransferencia(new ArrayList<>());
     }
 
-    // ==========================================
+    // ========================================== 
     // 1. TESTS DEL MÉTODO: validarDatos()
     // ==========================================
 
@@ -96,7 +96,7 @@ class TransferenciaBancariaTest {
 
     @Test
     void testEjecutarTransicion_DebeLlamarAlMetodoDeTransferenciaDeLaApi() {
-        transferenciaBancaria.ejecutarTransicion();
+        transferenciaBancaria.ejecutarTransicion(548887);
         
         // Verificamos que se llame al método largo de la interfaz de transferencias
         verify(apiTransferenciaMock, times(1)).transferenciaInmediataOProgramada();

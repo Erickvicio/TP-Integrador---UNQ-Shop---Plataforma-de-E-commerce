@@ -26,7 +26,7 @@ class ItemDeCatalogoTestDecremetarStockDeProducto {
 		assertEquals(auriculares.getStock(),7);
 		auriculares.decrementarStock(8);
 		assertNotEquals(auriculares.getStock(),0);
-		
+		 
 	}
 	
 	@Test

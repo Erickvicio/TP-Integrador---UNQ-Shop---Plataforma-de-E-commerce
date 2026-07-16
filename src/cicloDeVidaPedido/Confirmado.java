@@ -19,11 +19,11 @@ public class Confirmado extends Estado {
 		this.pedido.setEstado(new En_Preparacion(this.pedido));
 	}
 	
-	public void agregarItemDeCatalogo(ItemDeCatalogo item) {
+	public void agregarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está confirmado. No se pueden sumar más artículos.");
     }
 
-    public void quitarItemDeCatalogo(ItemDeCatalogo item) {
+    public void quitarItem(ItemDeCatalogo item) {
         throw new RuntimeException("Error: El pedido ya está confirmado. Modificación denegada.");
     }
 
@@ -31,4 +31,4 @@ public class Confirmado extends Estado {
 	public void mandarMail(Subsistema s) {
 		s.enviarMail(this, pedido);
 	};
-}
+} 

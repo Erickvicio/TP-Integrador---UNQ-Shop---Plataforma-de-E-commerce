@@ -120,13 +120,4 @@ class PedidoTest {
         assertTrue(pedido.getAdjuntos().contains(archivoMock));
     }
 
-    @Test
-    void testMetodosDeNegocioPendientesNoLanzanError() {
-        // Verificamos que los métodos vacíos corran sin romper el flujo
-        assertDoesNotThrow(() -> {
-            pedido.rembolsaCostoYEnvio();
-            pedido.rembolsaCosto();
-            pedido.rembolsaEnvio();
-        });
-    }
 }

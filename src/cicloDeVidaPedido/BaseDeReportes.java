@@ -11,7 +11,7 @@ import main.Carrito;
 
 public class BaseDeReportes {
 	
-	ArrayList<Venta> ventas;
+	ArrayList<Venta> ventas; 
 	
 	
 	public void agregarReporte(Carrito car, LocalDate fecha) {
@@ -20,7 +20,7 @@ public class BaseDeReportes {
 		this.ventas.add(venta);
 		
 	}
-	
+	 
 	public void generarReporte(LocalDate fechainc, LocalDate fechaFin){
 		
 		ArrayList<Venta> ventasEnPeriodo = this.ventas.stream()

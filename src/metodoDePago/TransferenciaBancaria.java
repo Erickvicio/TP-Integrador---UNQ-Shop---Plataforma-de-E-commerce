@@ -17,7 +17,7 @@ public class TransferenciaBancaria extends MetodosDePago{
         this.comprobantesTransferencia = new ArrayList<>();
     }
     
-    public void validarDatos() {
+    public void validarDatos() {  
     	this.validarCvu();
         this.validarAlias();
         
@@ -27,7 +27,7 @@ public class TransferenciaBancaria extends MetodosDePago{
             throw new RuntimeException("Error: La API externa rechazó la transfencia Bancaria.");
         }
     }
-    
+     
     void validarCvu(){
     	if (this.cvu <= 0) {
             throw new RuntimeException("Error: El cvu/Cbu es nulo.");
@@ -40,7 +40,7 @@ public class TransferenciaBancaria extends MetodosDePago{
     }
         
     
-    public void ejecutarTransicion() { 
+    public void ejecutarTransicion(float cantidad) { 
     	
     	this.apiTransferenciaBancaria.transferenciaInmediataOProgramada();
     }
@@ -67,5 +67,10 @@ public class TransferenciaBancaria extends MetodosDePago{
 		// TODO Auto-generated method stub
 		
 	}
+	
+    public void reembolsar(float cantidad) {
+    	// Falta implementacion por parte de la API
+    	this.apiTransferenciaBancaria.reembolsarCantidad(cantidad);
+    }
 
 }

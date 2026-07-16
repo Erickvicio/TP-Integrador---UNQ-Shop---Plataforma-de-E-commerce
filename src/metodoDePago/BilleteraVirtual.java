@@ -15,14 +15,14 @@ public class BilleteraVirtual extends MetodosDePago {
             throw new RuntimeException("Error: Saldo insuficiente en la cuenta.");
         }
     }
-
+  
    
     public void reservarFondos() {
         this.apiBilletera.bloquearSaldoHastaConfirmar();
     }
 
     
-    public void ejecutarTransicion() {
+    public void ejecutarTransicion(float cantidad) {
         this.apiBilletera.acreditarEnTiempoRealAlVendedor();
     }
 
@@ -30,4 +30,9 @@ public class BilleteraVirtual extends MetodosDePago {
     public void notificarResultado() {
         this.apiBilletera.enviarNotificacionPush();
     } 
+    
+    public void reembolsar(float cantidad) {
+    	// Falta implementacion por parte de la API
+    	this.apiBilletera.reembolsarCantidad(cantidad);
+    }
 }

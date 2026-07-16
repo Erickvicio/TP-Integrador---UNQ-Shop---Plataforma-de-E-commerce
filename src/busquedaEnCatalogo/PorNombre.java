@@ -14,7 +14,7 @@ public class PorNombre implements Criterio {
 	}
 	
 	public PorNombre(String contenido) {
-		this.contenido = contenido;
+		this.contenido = contenido; 
 	}
 
 }

@@ -51,9 +51,9 @@ class BilleteraVirtualTest {
 
     @Test
     void testEjecutarTransicion_DebeAcreditarAlVendedorEnLaApi() {
-        billeteraVirtual.ejecutarTransicion();
+        billeteraVirtual.ejecutarTransicion(150000);
 
-        verify(apiBilleteraMock, times(1)).acreditarEnTiempoRealAlVendedor();
+        verify(apiBilleteraMock, times(1)).acreditarEnTiempoRealAlVendedor(); 
     }
 
     @Test

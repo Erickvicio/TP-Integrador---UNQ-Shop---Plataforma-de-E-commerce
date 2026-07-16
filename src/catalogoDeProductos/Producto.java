@@ -8,6 +8,7 @@ public class Producto extends ItemDeCatalogo {
 	String categoria;
 	double precio;
 	double peso;
+//	int stock;
 	
 	ArrayList<Atributo> atributosExtra; 
 	
@@ -22,15 +23,14 @@ public class Producto extends ItemDeCatalogo {
 		};
 		
 		
-		this.sku=sku;
+		this.sku=sku; 
 		this.marca=marca;
 		this.precio=precio;
 		this.peso=peso;
 		this.atributosExtra=new ArrayList<Atributo>();
 	}
 
-	
-	@Override
+
 	public double precioBase() {
 		// TODO Auto-generated method stub
 		return precio;
@@ -47,11 +47,10 @@ public class Producto extends ItemDeCatalogo {
 	}
 
 
-	@Override
-	public void incrementarStock(int cantidad) {
-		// TODO Auto-generated method stub
-		this.stock += cantidad; 
-	}
+//	@Override
+//	public void incrementarStock(int cantidad) {
+//		this.stock += cantidad; 
+//	}
 
 
 	public ArrayList<Atributo> getAtributosExtra() {
@@ -59,24 +58,33 @@ public class Producto extends ItemDeCatalogo {
 	}
 
 
-	@Override
-	public void decrementarStock(int cantidad) {
-		// TODO Auto-generated method stub
-		if (this.stock >= cantidad) {
-			this.stock-=cantidad;
-		}
-	}
+//	@Override
+//	public void decrementarStock(int cantidad) {
+//		if (this.stock >= cantidad) {
+//			this.stock-=cantidad;
+//		}
+//	}
 
 
-	@Override
 	public double getPeso() {
-		// TODO Auto-generated method stub
 		return peso;
 	}
 
 
+	@Override
+	public boolean estaDisponible() {
+		return stock > 0;
+	}
 
 
+
+//	public boolean estaDisponible(int cantidad){
+//		return this.stock >= cantidad; 
+//	}
+//
+//	public int getStock() {
+//		return stock;
+//	}
 
 	
 }

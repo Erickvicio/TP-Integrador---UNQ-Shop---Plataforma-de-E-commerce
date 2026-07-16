@@ -13,4 +13,6 @@ public interface ApiTarjetaDeCredito {
     public Ticket generarCupon();
 
 	public Object generarTicket();
+
+	public float reembolsarCantidad(float cantidad);
 }

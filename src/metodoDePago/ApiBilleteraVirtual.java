@@ -10,4 +10,6 @@ public interface ApiBilleteraVirtual {
 
     public void enviarNotificacionPush();
 
+	public float reembolsarCantidad(float cantidad);
+
 }

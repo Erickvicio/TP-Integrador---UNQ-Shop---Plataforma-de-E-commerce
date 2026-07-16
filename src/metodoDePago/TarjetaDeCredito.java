@@ -22,7 +22,7 @@ public class TarjetaDeCredito extends MetodosDePago {
      
     @Override
     public void validarDatos() {
-        this.validarVencimiento();
+        this.validarVencimiento(); 
         this.validarCVV();
         this.validarNumeroTarjeta();
         
@@ -55,8 +55,8 @@ public class TarjetaDeCredito extends MetodosDePago {
     }
 
     @Override
-    public void ejecutarTransicion() {
-    	this.apiTarjeta.transferenciaInmediata();
+    public void ejecutarTransicion(float cantidad) {
+    	this.apiTarjeta.transferenciaInmediata(); 
     }
 
     @Override
@@ -78,5 +78,10 @@ public class TarjetaDeCredito extends MetodosDePago {
     public void setNumero(int numero) { this.numero = numero; }
     public void setCvv(int cvv) { this.cvv = cvv; }
     public void setVencimiento(Date vencimiento) { this.vencimiento = vencimiento; }
+    
+    public void reembolsar(float cantidad) {
+    	// Falta implementacion por parte de la API
+    	this.apiTarjeta.reembolsarCantidad(cantidad);
+    }
 
 }

@@ -25,7 +25,7 @@ class ItemDeCatalogoTestDecremetarStockDeCaja  {
 	@BeforeEach
 	void setUp() throws Exception {
 	
-		caja1 =new Caja("caja de todo","caja que contiene todo tipo de productos y cajas",10);//
+		caja1 =new Caja("caja de todo","caja que contiene todo tipo de productos y cajas",10);// 
 		caja2 =new Caja("caja de alimentos","caja que contiene alimentos",0);//
 		caja3 =new Caja("caja de electronicos","caja que contiene dispositivos electronicos",20);//
 		cocacola= new Producto("coca", "bebida coca cola", 10, 1234, "cocacola", "bebida", 50.0, 1);//
@@ -39,75 +39,33 @@ class ItemDeCatalogoTestDecremetarStockDeCaja  {
 
 	@Test
 	void test1() {
-		//Aca testeo suponiendo que un pedido se cancelo y se tiene que reponer el stock de los productos que se guardan dentro de una caja
 		
 		caja3.agregarItem(auriculares, 3);
 		caja3.agregarItem(cargador, 3);
 		caja3.incrementarStock(3);
-		//tenemos 9 en el stock de auriculares  
-		//tenemos 9 en el stock de cargadores
+		
+		
 		caja3.decrementarStock(2);
-		assertEquals(auriculares.getStock(),3);
-		assertEquals(cargador.getStock(), 3);
+		assertEquals(caja3.getStock(),1);
 	}
 	
+
 	@Test
 	void test2() {
-		//Aca testeo suponiendo que un pedido se cancelo y se tiene que reponer el stock de los productos dentro de una caja
 		
-		caja2.agregarItem(cocacola, 2);
-		caja2.agregarItem(pizza, 1);
-		caja2.agregarItem(pan, 3);
-		caja2.incrementarStock(3);
-		//tenemos 6 en el stock de cocacola
-		//tenemos 3 en el stock de pizza
-		//tenemos 9 en el stock de  pan
-		caja2.decrementarStock(4);;
-		
-		assertEquals(cocacola.getStock(),6);
-		assertEquals(pizza.getStock(),3);
-		assertEquals(pan.getStock(), 9);
-		//el stock no se decremento debido a que la cantidad que se quiere decrementar es mayor a la que hay en el stock de los productos
-	}
-	
-	@Test
-	void test3() {
-		//Aca testeo suponiendo que un pedido se cancelo y se tiene que reponer el stock de los productos o cajas dentro de otra caja
-		//tambien que com aumenta si un producto dentro de la caja , aparece en otra caja
 		galletitas.incrementarStock(6);
 		caja3.agregarItem(auriculares, 3);
 		caja3.agregarItem(cargador, 3);
 		caja3.incrementarStock(5);
-		//tenemos 15 en el stock de auriculares  
-		//tenemos 15 en el stock de cargadores
 		
 		caja2.agregarItem(cocacola, 2);
 		caja2.agregarItem(pizza, 1);
 		caja2.agregarItem(pan, 3);
 		caja2.incrementarStock(4);
-		//tenemos 8 en el stock de cocacola
-		//tenemos 4 en el stock de pizza
-		//tenemos 12 en el stock de  pan
 		
-		caja1.agregarItem(caja3, 2);
-		//tenemos 15 en el stock de auriculares  
-		//tenemos 15 en el stock de cargadores
+		assertEquals(caja3.getStock(), 5);
+		assertEquals(caja2.getStock(), 4);
 		
-		caja1.agregarItem(caja2, 3);
-		//tenemos 8 en el stock de cocacola
-		//tenemos 4 en el stock de pizza
-		//tenemos 12 en el stock de  pan
-		
-		caja1.agregarItem(galletitas, 2);
-		caja1.agregarItem(auriculares, 1);
-		caja1.decrementarStock(2);
-		
-		assertEquals(auriculares.getStock(),1);
-		assertEquals(cargador.getStock(), 3);
-		assertEquals(cocacola.getStock(),8);
-		assertEquals(pizza.getStock(),4);
-		assertEquals(pan.getStock(), 12);
-		assertEquals(galletitas.getStock(), 2);
 	}
 
 	

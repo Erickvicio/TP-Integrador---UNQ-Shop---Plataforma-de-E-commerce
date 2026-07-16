@@ -34,7 +34,7 @@ class TarjetaDeCreditoTest {
         Date fechaValida = new Date();
         tarjetaDeCredito.setNumero(123456);
         tarjetaDeCredito.setCvv(123);
-        tarjetaDeCredito.setVencimiento(fechaValida);
+        tarjetaDeCredito.setVencimiento(fechaValida); 
 
         // Simulamos que la API aprueba los datos
         when(apiTarjetaMock.validarDatos(123456, 123, fechaValida)).thenReturn(true);
@@ -58,7 +58,7 @@ class TarjetaDeCreditoTest {
     @Test
     void testEjecutarTransicion_DebeInvocarTransferenciaInmediataEnLaApi() {
         // Acto: Llamamos al método que queremos testear
-        tarjetaDeCredito.ejecutarTransicion();
+        tarjetaDeCredito.ejecutarTransicion(151515);
 
         // Verificación: Comprobamos que interactuó correctamente con la API externa
         verify(apiTarjetaMock).transferenciaInmediata();

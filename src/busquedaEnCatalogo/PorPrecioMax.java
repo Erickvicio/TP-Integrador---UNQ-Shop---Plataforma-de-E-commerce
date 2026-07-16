@@ -10,7 +10,7 @@ public class PorPrecioMax implements Criterio {
 		return catalogo.precioFinal() <= precioMax;
 	}
 
-	
+	 
 	public PorPrecioMax(double precio) {
 		this.precioMax = precio;
 	}

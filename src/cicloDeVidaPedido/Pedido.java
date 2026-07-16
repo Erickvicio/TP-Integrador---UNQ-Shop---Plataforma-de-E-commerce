@@ -2,10 +2,14 @@ package cicloDeVidaPedido;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import cicloDeVidaPedido.BaseDeReportes;
 import catalogoDeProductos.ItemDeCatalogo;
 import main.Carrito;
 import main.Direccion;
+import metodoDePago.MetodosDePago;
+import metodosDeEnvio.TipoDeEnvio;
 import notificacionesDePedido.ArchivoAdjunto;
 import notificacionesDePedido.Subsistema;
 
@@ -13,12 +17,51 @@ public class Pedido {
 
     private String correo;
 	private ArrayList<Subsistema> subsistemas;
-     private ArrayList<ArchivoAdjunto> adjuntos; 
-    private Carrito carrito; 
+    private ArrayList<ArchivoAdjunto> adjuntos; 
     private Estado estado; 
     private Direccion dir;
-    private BaseDeReportes barep;
+    private Carrito carrito; 		
+    private BaseDeReportes barep; 	
 
+    
+    
+    //2)
+    //Conexion con metodos de pago *********************
+    private MetodosDePago metodoPago;
+    
+    public void setMetodoDePago(MetodosDePago metodoPago) {
+    	this.metodoPago = metodoPago;
+    }
+    
+    public void realizarPago() {
+    	metodoPago.iniciarProcesoPago(getPrecioConEnvio());
+    } 
+    //**************************************************
+    
+    //4) 
+    private TipoDeEnvio tipoEnvio;
+    
+    public float costeEnvioEstimado() {
+    	return tipoEnvio.calcularCostos(this);
+    }
+    
+    public int estimacionEntregaDelEnvio() {
+    	return tipoEnvio.entregaEstimada(this);
+    }
+    
+    public void setTipoDeEnvio(TipoDeEnvio tipoEnvio) {
+    	this.tipoEnvio = tipoEnvio;
+    }
+    //*******************************************************
+    
+    
+    //3)
+    //SUGERENCIA **********************************************************
+//    private HashMap<ItemDeCatalogo, Integer> items;
+    // Podria ser mejor que el sistema de carritos y detalles de pedido
+    // FIN DE SUGERENCIA **************************************************
+
+    
     // Constructor 
     public Pedido(String correo,Direccion dir,BaseDeReportes barep) {
 		this.correo=correo;
@@ -28,6 +71,32 @@ public class Pedido {
 		this.dir = dir;
         this.carrito = new Carrito();
         this.barep = new BaseDeReportes();
+        
+	}
+
+    // New costructor que incluye el metodo de pago
+    public Pedido(String correo,Direccion dir,BaseDeReportes barep, MetodosDePago metodoPago) {
+    	this.correo=correo;
+		this.estadoInicial();
+		this.subsistemas= new ArrayList<>();
+		this.adjuntos= new ArrayList<>();
+		this.dir = dir;
+        this.carrito = new Carrito();
+        this.barep = new BaseDeReportes();
+    	this.metodoPago = metodoPago;
+	}
+	
+    // New costructor que incluye el metodo de pago
+    public Pedido(String correo,Direccion dir,BaseDeReportes barep, MetodosDePago metodoPago,TipoDeEnvio tipoEnvio) {
+    	this.correo=correo;
+		this.estadoInicial();
+		this.subsistemas= new ArrayList<>();
+		this.adjuntos= new ArrayList<>();
+		this.dir = dir;
+        this.carrito = new Carrito();
+        this.barep = new BaseDeReportes();
+    	this.metodoPago = metodoPago;
+    	this.tipoEnvio = tipoEnvio;
 	}
 	
 
@@ -35,14 +104,16 @@ public class Pedido {
     	this.setEstado(new Borrador(this)); 
     }
 
-    // VOIDS
+//    // VOIDS
     public void agregarReporteABase() {
     	this.barep.agregarReporte(this.getCarrito(), LocalDate.now());
     }
+    
+    
     private Object getbarep() {
 		// TODO Auto-generated method stub
 		return this.barep;
-	}
+	} 
 
 
 	public void agregarItem(ItemDeCatalogo item) { 
@@ -66,13 +137,19 @@ public class Pedido {
     } 
 
     public void incrementarStock() { 
-        this.carrito.incrementarStock();
+        this.carrito.incrementarStock(); 
     }
     
     // Métodos de negocio pendientes
-    public void rembolsaCostoYEnvio(){} 
-    public void rembolsaCosto() {} 
-    public void rembolsaEnvio() {} 
+    public void rembolsaCostoYEnvio(){
+    	metodoPago.reembolsar(getPrecioConEnvio());
+    } 
+    public void rembolsaCosto() {
+    	metodoPago.reembolsar(getPrecio());
+    } 
+    public void rembolsaEnvio() {
+    	metodoPago.reembolsar(costeEnvioEstimado());
+    } 
 
     // --- GETTERS Y SETTERS DE PEDIDO ---
 
@@ -89,10 +166,14 @@ public class Pedido {
     } 
      
     // Delegan el cálculo de streams directamente a lo que responda el carrito
-    public float getPrecio() { 
+    public float getPrecio() {
         return this.carrito.getPrecioTotal(); 
     } 
      
+    public float getPrecioConEnvio() {
+    	return this.getPrecio() + this.costeEnvioEstimado();
+    }
+    
     public float getPeso() { 
         return this.carrito.getPesoTotal(); 
     } 

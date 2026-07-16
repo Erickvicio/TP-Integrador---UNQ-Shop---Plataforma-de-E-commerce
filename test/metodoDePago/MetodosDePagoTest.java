@@ -21,12 +21,12 @@ class MetodosDePagoTest {
     @Test
     void testIniciarProcesoPago_CuandoTodosLosPasosSonExitosos_SeEjecutanEnOrden() {
         // Acto: Ejecutamos el método de la clase
-        medioPagoSpy.iniciarProcesoPago();
+        medioPagoSpy.iniciarProcesoPago(475889);
 
         // Verificaciones limpias según la imagen
         verify(medioPagoSpy).validarDatos();
         verify(medioPagoSpy).reservarFondos();
-        verify(medioPagoSpy).ejecutarTransicion(); 
+        verify(medioPagoSpy).ejecutarTransicion(475889); 
         verify(medioPagoSpy).notificarResultado();
     }
 
@@ -37,13 +37,14 @@ class MetodosDePagoTest {
             .when(medioPagoSpy).reservarFondos();
 
         // 2. Act & Assert: Usamos referencia de método sin lambdas para asegurar el verde absoluto
-        assertThrows(Exception.class, medioPagoSpy::iniciarProcesoPago);
-
+        assertThrows(Exception.class, 
+        		() -> medioPagoSpy.iniciarProcesoPago(485541));
+ 
         // 3. Verify: Verificaciones de corte de flujo limpias
         verify(medioPagoSpy).validarDatos();    
         verify(medioPagoSpy).reservarFondos(); 
         
-        verify(medioPagoSpy, never()).ejecutarTransicion();
+        verify(medioPagoSpy, never()).ejecutarTransicion(485541);
         verify(medioPagoSpy, never()).notificarResultado();
     }
     
