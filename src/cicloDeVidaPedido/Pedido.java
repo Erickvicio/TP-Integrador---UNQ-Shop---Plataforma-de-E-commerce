@@ -236,7 +236,7 @@ public class Pedido {
 
 	public String getCorreo() {
 		return correo;
-	}
+	} 
 
      public ArrayList<ArchivoAdjunto> getAdjuntos() {
 		return adjuntos;

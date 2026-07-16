@@ -153,7 +153,7 @@ class ServicioEnvioTestMockCase {
 		
 		//Verify
 		verify(mSucursal, times(1)).hayStock(unPedido);
-		assertEquals(esperado, obtenido);
+		assertEquals(esperado, obtenido); 
 	}
 	
 	@Test
