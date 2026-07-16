@@ -14,7 +14,7 @@ public class DetallePedido {
     }
     
     // --- MÉTODOS DE VALIDACIÓN Y CONTROL ---
-    
+     
     public void verificarStockParaCantidad(int cantidadTotalAValidar) {
         if (this.item == null) {
             throw new RuntimeException("El ítem de catálogo no puede ser nulo.");

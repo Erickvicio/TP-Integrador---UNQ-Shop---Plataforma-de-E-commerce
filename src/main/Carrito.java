@@ -66,7 +66,9 @@ public class Carrito {
     }
     
     public void decrementarStock() {
-        this.detallePedidos.forEach(DetallePedido::decrementarStock);
+        //this.detallePedidos.forEach(DetallePedido::decrementarStock);
+        
+       detallePedidos.forEach(detalle -> detalle.decrementarStock());
     }
 
     public void incrementarStock() {

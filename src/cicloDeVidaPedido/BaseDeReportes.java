@@ -13,6 +13,9 @@ public class BaseDeReportes {
 	
 	ArrayList<Venta> ventas; 
 	
+	public BaseDeReportes() {
+		ventas = new ArrayList<Venta>();
+	}
 	
 	public void agregarReporte(Carrito car, LocalDate fecha) {
 	

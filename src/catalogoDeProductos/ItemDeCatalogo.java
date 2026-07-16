@@ -46,7 +46,7 @@ public abstract class ItemDeCatalogo {
     }
     
     public void decrementarStock(int n) {
-    	stock = stock - n;
+    	this.stock = stock - n;
     }
     
     public abstract boolean estaDisponible();

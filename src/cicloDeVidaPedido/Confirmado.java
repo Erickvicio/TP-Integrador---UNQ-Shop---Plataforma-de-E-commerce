@@ -31,4 +31,8 @@ public class Confirmado extends Estado {
 	public void mandarMail(Subsistema s) {
 		s.enviarMail(this, pedido);
 	};
+	
+	public void iniciarProcesoDePago(float montoAPagar){
+		this.pedido.getMetodoDePago().iniciarProcesoPago(montoAPagar);
+	}
 } 

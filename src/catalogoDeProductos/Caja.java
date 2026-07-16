@@ -17,6 +17,9 @@ public class Caja extends ItemDeCatalogo {
 	}
 	 
 	public void agregarItem(ItemDeCatalogo item,int cantidad) {
+			//Descuenta del stock del item
+//			item.decrementarStock(cantidad);
+		
 			items.put(item,cantidad);
 	}
 

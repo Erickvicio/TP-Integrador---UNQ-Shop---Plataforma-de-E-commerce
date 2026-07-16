@@ -13,7 +13,7 @@ public class Borrador extends Estado{
     
 	public void siguiente(){
 		this.pedido.setEstado(new Confirmado(this.pedido));
-			pedido.decrementerStock();
+			pedido.decrementerStock(); 	// Esto decrementa el stock global de ItemDeCatalogo que se encuentre en el pedido
 	}
 	
 	

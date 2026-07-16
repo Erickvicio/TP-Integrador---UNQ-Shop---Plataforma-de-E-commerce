@@ -3,6 +3,7 @@ package cicloDeVidaPedido;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import cicloDeVidaPedido.BaseDeReportes;
 import catalogoDeProductos.ItemDeCatalogo;
@@ -22,6 +23,7 @@ public class Pedido {
     private Direccion dir;
     private Carrito carrito; 		
     private BaseDeReportes barep; 	
+    
 
     
     
@@ -33,9 +35,18 @@ public class Pedido {
     	this.metodoPago = metodoPago;
     }
     
-    public void realizarPago() {
-    	metodoPago.iniciarProcesoPago(getPrecioConEnvio());
-    } 
+    private void realizarPago() {
+    	
+    	this.estado.iniciarProcesoDePago(getPrecioConEnvio());
+    	this.estado.siguiente();
+    	this.notificarSubsitemas();
+    	
+//    	metodoPago.iniciarProcesoPago(getPrecioConEnvio());
+    }
+    
+    public MetodosDePago getMetodoDePago() {
+    	return this.metodoPago;
+    }
     //**************************************************
     
     //4) 
@@ -55,6 +66,7 @@ public class Pedido {
     //*******************************************************
     
     
+    
     //3)
     //SUGERENCIA **********************************************************
 //    private HashMap<ItemDeCatalogo, Integer> items;
@@ -62,6 +74,10 @@ public class Pedido {
     // FIN DE SUGERENCIA **************************************************
 
     
+    /*
+     * Metodo para saber que contiene un pedido
+     * */
+  
     // Constructor 
     public Pedido(String correo,Direccion dir,BaseDeReportes barep) {
 		this.correo=correo;
@@ -210,4 +226,9 @@ public class Pedido {
      public ArrayList<ArchivoAdjunto> getAdjuntos() {
 		return adjuntos;
 	}
+
+	 public void confirmarPedido() {
+		 this.realizarPago();
+//		 this.estado.siguiente();
+	 }
 }

@@ -22,4 +22,8 @@ public abstract class Estado {
 	public void mandarMail(Subsistema s) {};	
 	public void mandarComprobante(Subsistema s) {};
 	public void mandarCupon(Subsistema s) {};
+	
+	
+	// El unico con implementacion es el Confirmado, el resto "tira error" (no hace nada)
+	public void iniciarProcesoDePago(float montoAPagar) {}
 }  
